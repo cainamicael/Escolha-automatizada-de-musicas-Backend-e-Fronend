@@ -1,4 +1,4 @@
-package io.github.cainamicael.musicas;
+package io.github.cainamicael.musicas.services;
 
 import java.util.List;
 

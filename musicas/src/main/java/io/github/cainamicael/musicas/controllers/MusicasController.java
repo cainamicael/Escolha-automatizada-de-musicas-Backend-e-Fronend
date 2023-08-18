@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.cainamicael.musicas.MusicasService;
 import io.github.cainamicael.musicas.enums.CategoriasEnum;
 import io.github.cainamicael.musicas.representations.MusicasDTO;
+import io.github.cainamicael.musicas.services.MusicasService;
 
 @RestController
 @RequestMapping(value = "musicas")
