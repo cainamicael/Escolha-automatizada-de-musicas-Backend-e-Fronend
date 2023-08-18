@@ -1,6 +1,9 @@
 package io.github.cainamicael.musicas.services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,5 +47,51 @@ public class MusicasService {
 	}
 	
 	/*Regras específicas*/
+	
+	//Escolher 2 musicas de adoração e 1 de celebração
+	public List<MusicasDTO> musicasIndicadas() {
+		List<MusicasDTO> indicadas = new ArrayList<>();
+		
+		CategoriasEnum adoracao = CategoriasEnum.ADORACAO;
+		CategoriasEnum celebracao = CategoriasEnum.CELEBRACAO;
+		
+		for(int i = 0; i < 2; i++) {
+			Optional<Musicas> optionalMusica = repository.findByCategoriaNotPlayedMusic(adoracao.toString());
+			
+			if(optionalMusica.isPresent()) {
+				Musicas musicaEscolhida = optionalMusica.get();
+				
+				musicaEscolhida.setDataUltimaVezTocada(new Date());
+				repository.save(musicaEscolhida);
+				
+				indicadas.add(new MusicasDTO(musicaEscolhida));
+			} else {
+				Musicas musicaEscolhida = repository.findByCategoriaPlayedMusicOrderByData(adoracao.toString()).get();
+				indicadas.add(new MusicasDTO(musicaEscolhida));
+				
+				musicaEscolhida.setDataUltimaVezTocada(new Date());
+				repository.save(musicaEscolhida);
+			}	
+		}
+		
+		Optional<Musicas> optionalMusica = repository.findByCategoriaNotPlayedMusic(celebracao.toString());
+		
+		if(optionalMusica.isPresent()) {
+			Musicas musicaEscolhida = optionalMusica.get();
+			
+			musicaEscolhida.setDataUltimaVezTocada(new Date());
+			repository.save(musicaEscolhida);
+			
+			indicadas.add(new MusicasDTO(musicaEscolhida));
+		} else {
+			Musicas musicaEscolhida = repository.findByCategoriaPlayedMusicOrderByData(celebracao.toString()).get();
+			indicadas.add(new MusicasDTO(musicaEscolhida));
+			
+			musicaEscolhida.setDataUltimaVezTocada(new Date());
+			repository.save(musicaEscolhida);
+		}
+		
+		return indicadas;
+	}
 	
 }

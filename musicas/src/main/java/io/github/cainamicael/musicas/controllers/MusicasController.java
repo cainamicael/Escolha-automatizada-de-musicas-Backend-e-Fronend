@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.cainamicael.musicas.models.Musicas;
 import io.github.cainamicael.musicas.representations.MusicasDTO;
 import io.github.cainamicael.musicas.services.MusicasService;
 
@@ -48,5 +47,9 @@ public class MusicasController {
 	}
 	
 	/*Regras específicas*/
+	@GetMapping(value = "/indicadas")
+	public List<MusicasDTO> musicasIndicadas() {
+		return service.musicasIndicadas();
+	}
 	
 }
