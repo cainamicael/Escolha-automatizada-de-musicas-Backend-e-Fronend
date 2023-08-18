@@ -42,4 +42,7 @@ public class MusicasService {
 		List<MusicasDTO> musicasDTO = musicas.stream().map(x -> new MusicasDTO(x)).toList();
 		return musicasDTO;
 	}
+	
+	/*Regras específicas*/
+	
 }
