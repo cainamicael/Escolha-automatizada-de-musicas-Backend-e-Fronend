@@ -56,25 +56,16 @@ public class MusicasService {
 		CategoriasEnum celebracao = CategoriasEnum.CELEBRACAO;
 		
 		for(int i = 0; i < 2; i++) {
-			Optional<Musicas> optionalMusica = repository.findByCategoriaNotPlayedMusic(adoracao.toString());
-			
-			if(optionalMusica.isPresent()) {
-				Musicas musicaEscolhida = optionalMusica.get();
-				
-				musicaEscolhida.setDataUltimaVezTocada(new Date());
-				repository.save(musicaEscolhida);
-				
-				indicadas.add(new MusicasDTO(musicaEscolhida));
-			} else {
-				Musicas musicaEscolhida = repository.findByCategoriaPlayedMusicOrderByData(adoracao.toString()).get();
-				indicadas.add(new MusicasDTO(musicaEscolhida));
-				
-				musicaEscolhida.setDataUltimaVezTocada(new Date());
-				repository.save(musicaEscolhida);
-			}	
+			logicaDaEscolha(adoracao, indicadas);
 		}
 		
-		Optional<Musicas> optionalMusica = repository.findByCategoriaNotPlayedMusic(celebracao.toString());
+		logicaDaEscolha(celebracao, indicadas);
+				
+		return indicadas;
+	}
+	
+	public void logicaDaEscolha(CategoriasEnum categoria, List<MusicasDTO> indicadas) {
+		Optional<Musicas> optionalMusica = repository.findByCategoriaNotPlayedMusic(categoria.toString());
 		
 		if(optionalMusica.isPresent()) {
 			Musicas musicaEscolhida = optionalMusica.get();
@@ -84,14 +75,11 @@ public class MusicasService {
 			
 			indicadas.add(new MusicasDTO(musicaEscolhida));
 		} else {
-			Musicas musicaEscolhida = repository.findByCategoriaPlayedMusicOrderByData(celebracao.toString()).get();
+			Musicas musicaEscolhida = repository.findByCategoriaPlayedMusicOrderByData(categoria.toString()).get();
 			indicadas.add(new MusicasDTO(musicaEscolhida));
 			
 			musicaEscolhida.setDataUltimaVezTocada(new Date());
 			repository.save(musicaEscolhida);
-		}
-		
-		return indicadas;
+		}	
 	}
-	
 }
