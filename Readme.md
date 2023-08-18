@@ -32,7 +32,6 @@ Para garantir uma variedade adequada e evitar repetições excessivas, as seguin
 
 1. As músicas não podem ser repetidas, a menos que todas as músicas da categoria correspondente já tenham sido tocadas.
 2. Caso haja repetição, a música escolhida será aquela que não foi tocada por mais tempo, minimizando a percepção de repetição.
-3. Antes de marcar uma música como tocada, o sistema solicitará uma confirmação para garantir a precisão na escolha das músicas.
 
 ## Tecnologias Utilizadas
 
