@@ -42,13 +42,6 @@ O sistema será desenvolvido utilizando as seguintes tecnologias:
 - Docker: Para a criação e gerenciamento de contêineres.
 - MySQL: Banco de dados relacional para armazenar as informações das músicas e seu histórico de reprodução.
 
-## Instruções de Uso
-
-1. Certifique-se de ter o Java e o Docker instalados em seu sistema.
-2. Clone este repositório em sua máquina.
-3. Execute o banco de dados MySQL em um contêiner Docker usando o comando: `docker run -d -p 3306:3306 --name music-db -e MYSQL_ROOT_PASSWORD=senha-root -e MYSQL_DATABASE=musicas mysql:latest`
-4. Execute a aplicação Spring Boot.
-5. Acesse a interface do sistema através de um navegador web.
 
 ## Contribuições
 
