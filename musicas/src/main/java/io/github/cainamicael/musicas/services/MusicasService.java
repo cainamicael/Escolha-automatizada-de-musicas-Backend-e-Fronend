@@ -27,7 +27,8 @@ public class MusicasService {
 		return new MusicasDTO(musica);
 	}
 	
-	public List<MusicasDTO> listarPelaCategoria(CategoriasEnum categoria) {
+	public List<MusicasDTO> listarPelaCategoria(String categoriaStr) {
+		CategoriasEnum categoria = CategoriasEnum.valueOf(categoriaStr.toUpperCase());
 		List<Musicas> musicas = repository.findByCategoria(categoria);
 		List<MusicasDTO> musicasDTO = musicas.stream().map(x -> new MusicasDTO(x)).toList();
 		return musicasDTO;

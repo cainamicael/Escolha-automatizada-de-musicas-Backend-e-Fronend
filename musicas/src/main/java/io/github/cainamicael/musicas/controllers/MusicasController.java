@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.cainamicael.musicas.enums.CategoriasEnum;
 import io.github.cainamicael.musicas.representations.MusicasDTO;
 import io.github.cainamicael.musicas.services.MusicasService;
 
@@ -33,7 +32,7 @@ public class MusicasController {
 	}
 	
 	@GetMapping(params = "categoria")
-	public List<MusicasDTO> listarPelaCategoria(@RequestParam("categoria") CategoriasEnum categoria) {
+	public List<MusicasDTO> listarPelaCategoria(@RequestParam("categoria") String categoria) {
 		List<MusicasDTO> musicas = service.listarPelaCategoria(categoria);
 		return musicas;
 		
