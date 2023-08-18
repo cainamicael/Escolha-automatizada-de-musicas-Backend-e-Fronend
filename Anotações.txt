@@ -1,0 +1,42 @@
+Problemática:
+
+Na equipe de louvor da igreja, existe um problema recorrente no quesito de escolha de músicas.
+
+Temos uma estrutura:
+
+Tocamos 3 músicas em cada culto
+
+	2 músicas de adoração
+	1 música de celebração
+
+Tocamos 5 vezes na semana
+
+	2 vezes no Domingo
+	1 vez na Terça-Feira
+	1 vez na Quarta-Feira
+	1 vez na Quinta-Feira
+
+Tendo em vista solucionar o problema de repetições de músicas e facilitar no processo de escolha,
+me propus a fazer um sistema que automatize a escolha das músicas
+
+Estrutura do banco de dados:
+
+Cada música cadastrada deverá ter
+
+	id
+	nome
+	categoria (adoração ou celebração)
+	data da ultima vez que foi tocada
+
+Regras de negócio:
+
+	As músicas não podem se repetir, salvo quando não houverem mais músicas que ainda não foram tocadas com a respectiva categoria
+	Caso se repitam, a música escolhida deve ser a que foi tocada a mais tempo, para não ficar perceptivel a repetição
+	Antes de marcar a música como tocada, deverá existir uma confirmação se realmente serão essas músicas ou se vai querer sortear novamente
+
+Tecnologias usadas:
+
+	Java + Spring Boot
+	Docker
+	MySql
+	
