@@ -65,6 +65,8 @@ public class MusicaService {
 	}
 	
 	public void logicaDaEscolha(CategoriasEnum categoria, List<MusicaDTO> indicadas) {
+		zerarAsDatas();
+		
 		Optional<Musica> optionalMusica = repository.findByCategoriaNotPlayedMusic(categoria.toString());
 		
 		if(optionalMusica.isPresent()) {
@@ -81,5 +83,25 @@ public class MusicaService {
 			musicaEscolhida.setDataUltimaVezTocada(new Date());
 			repository.save(musicaEscolhida);
 		}	
+	}
+	
+	public Long[] quantidadeDeSorteios() {
+		Long[] numeros = new Long[2];
+		
+		numeros[0] = repository.count();
+		numeros[1] = repository.countDatesNotNull();
+		
+		return numeros;
+	}
+	
+	public void zerarAsDatas() {
+		if(repository.count() == repository.countDatesNotNull()) {
+			List<Musica> musicas = repository.findAll();
+			
+			for (Musica musica : musicas) {
+				musica.setDataUltimaVezTocada(null);
+				repository.save(musica);
+			}
+		}
 	}
 }

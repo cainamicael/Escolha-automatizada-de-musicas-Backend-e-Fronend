@@ -52,4 +52,9 @@ public class MusicaController {
 		return service.musicasIndicadas();
 	}
 	
+	@GetMapping(value = "/quantidade")
+	public Long[] conta() {
+		return service.quantidadeDeSorteios();
+	}
+	
 }

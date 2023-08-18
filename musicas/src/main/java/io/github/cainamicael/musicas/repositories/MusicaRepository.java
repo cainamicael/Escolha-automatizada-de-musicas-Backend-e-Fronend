@@ -21,5 +21,8 @@ public interface MusicaRepository extends JpaRepository<Musica, Long> {
 	//Quando não houver música sem ter sido tocada, vai escolher a que foi tocada a mais tempo
 	@Query(value = "SELECT * FROM tb_musicas WHERE categoria = :categoria AND data_ultima_vez_tocada IS NOT NULL ORDER BY data_ultima_vez_tocada ASC LIMIT 1", nativeQuery = true)
 	Optional<Musica> findByCategoriaPlayedMusicOrderByData(String categoria);
+	
+	@Query(nativeQuery = true, value = "SELECT COUNT(*) AS total_registros FROM tb_musicas WHERE data_ultima_vez_tocada is not null;")
+	Long countDatesNotNull();
 }
 	
