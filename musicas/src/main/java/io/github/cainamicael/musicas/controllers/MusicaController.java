@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.cainamicael.musicas.representations.MusicasDTO;
-import io.github.cainamicael.musicas.services.MusicasService;
+import io.github.cainamicael.musicas.representations.MusicaDTO;
+import io.github.cainamicael.musicas.services.MusicaService;
 
 @RestController
 @RequestMapping(value = "/musicas")
-public class MusicasController {
+public class MusicaController {
 	
 	@Autowired
-	private MusicasService service;
+	private MusicaService service;
 	
 	/*Crud*/
 	@PostMapping
-	public ResponseEntity<?> criar(@RequestBody MusicasDTO musica) {
+	public ResponseEntity<?> criar(@RequestBody MusicaDTO musica) {
 		return service.criar(musica);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<MusicasDTO>> listarTudo() {
-		List<MusicasDTO> musicas = service.listarTudo();
+	public ResponseEntity<List<MusicaDTO>> listarTudo() {
+		List<MusicaDTO> musicas = service.listarTudo();
 		return ResponseEntity.ok(musicas);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public MusicasDTO buscarPeloId(@PathVariable("id") Long id) {
+	public MusicaDTO buscarPeloId(@PathVariable("id") Long id) {
 		return service.buscarPeloId(id);
 	}
 	
 	@GetMapping(params = "categoria")
-	public List<MusicasDTO> listarPelaCategoria(@RequestParam("categoria") String categoria) {
-		List<MusicasDTO> musicas = service.listarPelaCategoria(categoria);
+	public List<MusicaDTO> listarPelaCategoria(@RequestParam("categoria") String categoria) {
+		List<MusicaDTO> musicas = service.listarPelaCategoria(categoria);
 		return musicas;
 		
 	}
 	
 	/*Regras específicas*/
 	@GetMapping(value = "/indicadas")
-	public List<MusicasDTO> musicasIndicadas() {
+	public List<MusicaDTO> musicasIndicadas() {
 		return service.musicasIndicadas();
 	}
 	

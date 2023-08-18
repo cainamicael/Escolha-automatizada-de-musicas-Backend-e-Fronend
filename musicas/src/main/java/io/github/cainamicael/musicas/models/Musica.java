@@ -3,7 +3,7 @@ package io.github.cainamicael.musicas.models;
 import java.util.Date;
 
 import io.github.cainamicael.musicas.enums.CategoriasEnum;
-import io.github.cainamicael.musicas.representations.MusicasDTO;
+import io.github.cainamicael.musicas.representations.MusicaDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_musicas")
 @Data
 @NoArgsConstructor
-public class Musicas {
+public class Musica {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,10 @@ public class Musicas {
 	private CategoriasEnum categoria;
 	private Date dataUltimaVezTocada;
 	
-	public Musicas(MusicasDTO musica) {
+	public Musica(MusicaDTO musica) {
 		this.id = musica.getId();
 		this.nome = musica.getNome();
 		this.categoria = musica.getCategoria();
 		this.dataUltimaVezTocada = musica.getDataUltimaVezTocada();
 	}
-
 }
