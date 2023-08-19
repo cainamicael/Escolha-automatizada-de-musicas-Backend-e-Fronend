@@ -13,48 +13,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.cainamicael.musicas.representations.MusicaDTO;
+import io.github.cainamicael.musicas.representations.QuantidadeDTO;
 import io.github.cainamicael.musicas.services.MusicaService;
 
 @RestController
-@RequestMapping(value = "/musicas")
+@RequestMapping(value = "api")
 public class MusicaController {
 	
 	@Autowired
 	private MusicaService service;
 	
-	/*Crud*/
-	@PostMapping
-	public ResponseEntity<?> criar(@RequestBody MusicaDTO musica) {
-		return service.criar(musica);
-	}
-
-	@GetMapping
-	public ResponseEntity<List<MusicaDTO>> listarTudo() {
-		List<MusicaDTO> musicas = service.listarTudo();
-		return ResponseEntity.ok(musicas);
+	@GetMapping("quantidades")
+	public QuantidadeDTO quantidades() {
+		return service.quantidades();
 	}
 	
-	@GetMapping(value = "/{id}")
-	public MusicaDTO buscarPeloId(@PathVariable("id") Long id) {
-		return service.buscarPeloId(id);
+	@GetMapping(value = "musica", params = "categoria")
+	public MusicaDTO mostrmusicaSorteada(@RequestParam("categoria") String categoria) {
+		return service.musicaSorteada(categoria.toUpperCase());
 	}
 	
-	@GetMapping(params = "categoria")
-	public List<MusicaDTO> listarPelaCategoria(@RequestParam("categoria") String categoria) {
-		List<MusicaDTO> musicas = service.listarPelaCategoria(categoria);
-		return musicas;
-		
+	@GetMapping(value = "musica/pular/{id}")
+	public MusicaDTO pularPeloIdESortearNovaMusica(@PathVariable("id") Long id) {
+		return service.pularPeloIdESortearNovaMusica(id);
 	}
 	
-	/*Regras específicas*/
-	@GetMapping(value = "/indicadas")
-	public List<MusicaDTO> musicasIndicadas() {
-		return service.musicasIndicadas();
+	@PostMapping(value = "musicas/confirmar")
+	public ResponseEntity<String> confirmarMusicas(@RequestBody List<MusicaDTO> musicas) {
+		return service.confirmarMusicas(musicas);
 	}
 	
-	@GetMapping(value = "/quantidade")
-	public Long[] conta() {
-		return service.quantidadeDeSorteios();
+	@GetMapping(value = "musicas/cancelar")
+	public ResponseEntity<String> cancelar() {
+		return service.cancelar();
 	}
-	
 }

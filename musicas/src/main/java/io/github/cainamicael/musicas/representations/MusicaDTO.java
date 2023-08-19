@@ -13,19 +13,17 @@ public class MusicaDTO {
 	
 	private Long id; 
 	private String nome;
+	private String cantor;
 	private CategoriasEnum categoria;
 	private Date dataUltimaVezTocada;
+	private Boolean pularMusica;
 	
 	public MusicaDTO(Musica musica) {
 		this.id = musica.getId();
 		this.nome = musica.getNome();
+		this.cantor = musica.getCantor();
 		this.categoria = musica.getCategoria();
 		this.dataUltimaVezTocada = musica.getDataUltimaVezTocada();
+		this.pularMusica = musica.getPularMusica();
 	}
-	
-	public MusicaDTO(String nome, CategoriasEnum categoria) {
-		this.nome = nome;
-		this.categoria = categoria;
-	}
-
 }

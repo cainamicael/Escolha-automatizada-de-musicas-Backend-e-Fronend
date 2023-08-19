@@ -24,14 +24,18 @@ public class Musica {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String cantor;
 	@Enumerated(EnumType.STRING)
 	private CategoriasEnum categoria;
 	private Date dataUltimaVezTocada;
+	private Boolean pularMusica;
 	
 	public Musica(MusicaDTO musica) {
 		this.id = musica.getId();
 		this.nome = musica.getNome();
+		this.cantor = musica.getCantor();
 		this.categoria = musica.getCategoria();
 		this.dataUltimaVezTocada = musica.getDataUltimaVezTocada();
+		this.pularMusica = musica.getPularMusica();
 	}
 }
