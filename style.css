@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background-color: #222222;
+}
+
+/*classes auxiliares*/
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.clear {
+    clear: both;
+}
+
+/*Musicas selecionadas*/
+.musicas-selecionadas {
+    width: 300px;
+    color: white;
+    text-align: center;
+}
+
+.musicas-selecionadas h3 {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.musicas-selecionadas h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.tres-partes {
+    width: 31%;
+    height: 5px;
+    margin: 1%;
+    background-color: #cecf1c;
+    float: left;
+}
+
+/*conteúdo*/
+.conteudo {
+    box-shadow: 0px 0px 35px 0px #000000;
+}
+
+.modulo {
+    padding: 20px;
+    text-align: center;
+}
+
+.modulo h4 {
+    color: #cecf1c;
+    font-size: 20px;
+}
+
+.modulo h2 {
+    color: white;
+    padding: px;
+}
+
+.modulo .cantor {
+    color: white;
+    margin-bottom: 25px;
+}
+
+.modulo a {
+    display: block;
+    text-decoration: none;
+    padding: 8px;
+    color: #222222;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+/*Cancelar e Confirmar*/
+
+.confirmar a {
+    text-align: center;
+    text-decoration: none;
+    color: #222222;
+    background-color: #cecf1c;
+}
+
+.cancelar a {
+    text-align: center;
+    text-decoration: none;
+    color: #222222;
+    background-color: white;
+
+}
+
+/*Confirmar e cancelar*/
+.final {
+    width: 48%;
+    float: left;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.final a {
+    display: inline;
+    color: #222222;
+    text-decoration: none;
+    padding: 10px 30%;
+    box-shadow: 0px 0px 10px 0px #000000;
+}
+
+a#confirmar {
+    background-color: #cecf1c;
+}
+
+a#cancelar {
+    background-color: white;
+}
