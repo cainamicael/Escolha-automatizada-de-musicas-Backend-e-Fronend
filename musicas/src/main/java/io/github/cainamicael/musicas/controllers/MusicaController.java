@@ -23,6 +23,11 @@ public class MusicaController {
 	@Autowired
 	private MusicaService service;
 	
+	@GetMapping(value = "musicas")
+	public List<MusicaDTO> listarTudo() {
+		return service.listarTudo();
+	}
+	
 	@GetMapping("quantidades")
 	public QuantidadeDTO quantidades() {
 		return service.quantidades();

@@ -43,6 +43,12 @@ public class MusicaService {
 		}
 	}
 	
+	public List<MusicaDTO> listarTudo() {
+		List<Musica> musicas = repository.findAll();
+		List<MusicaDTO> musicasDTO = musicas.stream().map(x -> new MusicaDTO(x)).toList();
+		return musicasDTO;
+	}
+	
 	public QuantidadeDTO quantidades() {
 		Long quantidadeRegistros = repository.count();
 		Long quantidadeMusicasTocadas = repository.countPlayedMusics();
