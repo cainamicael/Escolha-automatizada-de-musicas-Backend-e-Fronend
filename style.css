@@ -56,7 +56,7 @@ html, body {
 }
 
 .modulo {
-    padding: 20px;
+    padding: 15px 5%;
     text-align: center;
 }
 
@@ -104,9 +104,9 @@ html, body {
 
 /*Confirmar e cancelar*/
 .final {
-    width: 48%;
+    margin: 20px 0;
+    width: 50%;
     float: left;
-    margin: 15px 0;
     text-align: center;
 }
 
@@ -114,7 +114,7 @@ html, body {
     display: inline;
     color: #222222;
     text-decoration: none;
-    padding: 10px 30%;
+    padding: 10px 25%;
     box-shadow: 0px 0px 10px 0px #000000;
 }
 
