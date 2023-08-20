@@ -53,6 +53,7 @@ html, body {
 /*conteúdo*/
 .conteudo {
     box-shadow: 0px 0px 35px 0px #000000;
+    margin-bottom: 40px;
 }
 
 .modulo {
@@ -104,18 +105,18 @@ html, body {
 
 /*Confirmar e cancelar*/
 .final {
-    margin: 20px 0;
-    width: 50%;
-    float: left;
     text-align: center;
 }
 
 .final a {
-    display: inline;
-    color: #222222;
-    text-decoration: none;
-    padding: 10px 25%;
     box-shadow: 0px 0px 10px 0px #000000;
+    display: block;
+    color: #222222;
+    padding: 15px 0;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: lighter;
+   
 }
 
 a#confirmar {
