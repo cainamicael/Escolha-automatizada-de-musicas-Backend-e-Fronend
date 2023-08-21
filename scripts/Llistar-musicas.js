@@ -1,57 +1,55 @@
 alert('Quando todas as músicas forem tocadas, a contagem de músicas tocadas irá zerar!')
+const urlBase = 'http://localhost:8080/api/'
 
-        const urlBase = 'http://localhost:8080/api/'
+//Setando as músicas cadastradas e tocadas
+fetch(urlBase + 'quantidades')
+.then(resposta => resposta.json())
+.then(quantidades => {
+    const musicasCadastradas = quantidades.quantidadeRegistros
+    const musicasTocadas = quantidades.quantidadeMusicasTocadas
 
-        const modulos = document.querySelector('.modulos')
-        modulos.innerHTML = ''
+    //Mudando os textos
+    document.getElementById('musicas-cadastradas').innerText = musicasCadastradas + ' MÚSICAS CADASTRADAS'
+    
+    document.getElementById('musicas-tocadas').innerText = musicasTocadas + ' MÚSICAS JÁ TOCADAS'
+})
 
-        //Setando as músicas cadastradas e tocadas
-        fetch(urlBase + 'quantidades')
-        .then(resposta => resposta.json())
-        .then(quantidades => {
-            const musicasCadastradas = quantidades.quantidadeRegistros
-            const musicasTocadas = quantidades.quantidadeMusicasTocadas
+//Pegando cada música dinamicamente
+fetch(urlBase + 'musicas')
+.then(resposta => resposta.json())
+.then(dados => {
+    const modulos = document.querySelector('.modulos')
+    modulos.innerHTML = ''
+    let adicionar = ''
 
-            //Mudando os textos
-            document.getElementById('musicas-cadastradas').innerText = musicasCadastradas + ' MÚSICAS CADASTRADAS'
-            
-            document.getElementById('musicas-tocadas').innerText = musicasTocadas + ' MÚSICAS JÁ TOCADAS'
-        })
+    dados.forEach(dado => {
+        let data;
 
-        //Pegando cada música dinamicamente
-        fetch(urlBase + 'musicas')
-        .then(resposta => resposta.json())
-        .then(dados => {
-            let adicionar = ''
+        if(dado.dataUltimaVezTocada != null) {
+            data = dado.dataUltimaVezTocada
+        } else {
+            data = 'A música ainda não foi tocada!'
+        }
 
-            dados.forEach(dado => {
-                let data;
+        adicionar += `
+            <div class="modulo">
+                <span>ID:</span>
+                <p>${dado.id}</p>
 
-                if(dado.dataUltimaVezTocada != null) {
-                    data = dado.dataUltimaVezTocada
-                } else {
-                    data = 'A música ainda não foi tocada!'
-                }
+                <span>NOME:</span>
+                <p>${dado.nome}</p>
 
-                adicionar += `
-                    <div class="modulo">
-                        <span>ID:</span>
-                        <p>${dado.id}</p>
+                <span>QUEM CANTA:</span>
+                <p>${dado.cantor}</p>
 
-                        <span>NOME:</span>
-                        <p>${dado.nome}</p>
+                <span>CATEGORIA:</span>
+                <p>${dado.categoria}</p>
 
-                        <span>QUEM CANTA:</span>
-                        <p>${dado.cantor}</p>
+                <span>QUANDO FOI TOCADA: </span>
+                <p>${data}</p>
+            </div>
+        `
+    })
 
-                        <span>CATEGORIA:</span>
-                        <p>${dado.categoria}</p>
-
-                        <span>QUANDO FOI TOCADA: </span>
-                        <p>${data}</p>
-                    </div>
-                `
-            })
-
-            modulos.innerHTML = adicionar
-        })
+    modulos.innerHTML = adicionar
+})
