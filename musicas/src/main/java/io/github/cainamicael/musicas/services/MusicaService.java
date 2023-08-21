@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import io.github.cainamicael.musicas.models.Musica;
 import io.github.cainamicael.musicas.repositories.MusicaRepository;
 import io.github.cainamicael.musicas.representations.MusicaDTO;
+import io.github.cainamicael.musicas.representations.MusicaMinDTO;
+import io.github.cainamicael.musicas.representations.MusicaMinDTO;
 import io.github.cainamicael.musicas.representations.QuantidadeDTO;
 
 @Service
@@ -41,6 +43,11 @@ public class MusicaService {
 				repository.save(musica);
 			}
 		}
+	}
+	
+	public ResponseEntity<Musica> salvarMusica(MusicaMinDTO musica) {
+		Musica musicaSalva = repository.save(new Musica(musica));
+		return ResponseEntity.ok(musicaSalva);
 	}
 	
 	public List<MusicaDTO> listarTudo() {

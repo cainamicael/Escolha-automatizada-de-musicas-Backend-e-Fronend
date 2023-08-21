@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.cainamicael.musicas.models.Musica;
 import io.github.cainamicael.musicas.representations.MusicaDTO;
+import io.github.cainamicael.musicas.representations.MusicaMinDTO;
 import io.github.cainamicael.musicas.representations.QuantidadeDTO;
 import io.github.cainamicael.musicas.services.MusicaService;
 
@@ -22,6 +24,11 @@ public class MusicaController {
 	
 	@Autowired
 	private MusicaService service;
+	
+	@PostMapping(value = "musica")
+	public ResponseEntity<Musica> salvarMusica(@RequestBody MusicaMinDTO musica) {
+		return service.salvarMusica(musica);
+	}
 	
 	@GetMapping(value = "musicas")
 	public List<MusicaDTO> listarTudo() {

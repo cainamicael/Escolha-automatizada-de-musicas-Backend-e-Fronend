@@ -4,6 +4,7 @@ import java.util.Date;
 
 import io.github.cainamicael.musicas.enums.CategoriasEnum;
 import io.github.cainamicael.musicas.representations.MusicaDTO;
+import io.github.cainamicael.musicas.representations.MusicaMinDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -37,5 +38,11 @@ public class Musica {
 		this.categoria = musica.getCategoria();
 		this.dataUltimaVezTocada = musica.getDataUltimaVezTocada();
 		this.pularMusica = musica.getPularMusica();
+	}
+	
+	public Musica (MusicaMinDTO musica) {
+		this.nome = musica.getNome();
+		this.cantor = musica.getCantor();
+		this.categoria = musica.getCategoria();
 	}
 }

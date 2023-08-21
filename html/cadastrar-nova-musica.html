@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar nova música</title>
-    <link rel="stylesheet" href="css/style-cadastrar-nova-musica.css">
+    <link rel="stylesheet" href="../css/style-cadastrar-nova-musica.css">
 </head>
 <body>
     <div class="container">
@@ -21,11 +21,11 @@
     <div class="container">
         <div class="conteudo">
             <div class="modulo">
-                <form action="" method="post">
-                    <input type="text" placeholder="Nome de música..." required>
-                    <input type="text" placeholder="Quem canta a música..." required>
+                <form>
+                    <input type="text" name="nome" placeholder="Nome de música..." required>
+                    <input type="text" name="cantor" placeholder="Quem canta a música..." required>
                     <label for="selecao">Categoria: </label>
-                    <select id="selecao">
+                    <select name="categoria" id="selecao">
                         <option value="adoracao">Adoração</option>
                         <option value="celebracao">Celebração</option>
                     </select>
