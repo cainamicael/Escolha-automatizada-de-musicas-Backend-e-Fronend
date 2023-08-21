@@ -41,53 +41,18 @@
 
                 <span>QUANDO FOI TOCADA: </span>
                 <p>21/08/2023</p>
-
-                <div class="linha"></div>
-            </div>
-
-
-            <div class="modulo">
-                <span>ID:</span>
-                <p>1</p>
-
-                <span>NOME:</span>
-                <p>Nome da música</p>
-
-                <span>QUEM CANTA:</span>
-                <p>Nome de quem canta a música</p>
-
-                <span>CATEGORIA:</span>
-                <p>Adoração</p>
-
-                <span>QUANDO FOI TOCADA: </span>
-                <p>21/08/2023</p>
-
-                <div class="linha"></div>
-            </div>
-
-            <div class="modulo">
-                <span>ID:</span>
-                <p>1</p>
-
-                <span>NOME:</span>
-                <p>Nome da música</p>
-
-                <span>QUEM CANTA:</span>
-                <p>Nome de quem canta a música</p>
-
-                <span>CATEGORIA:</span>
-                <p>Adoração</p>
-
-                <span>QUANDO FOI TOCADA: </span>
-                <p>21/08/2023</p>
-
-                <div class="linha"></div>
             </div>
         </div>   
     </div>   
 
     <script>
         alert('Quando todas as músicas forem tocadas, a contagem de músicas tocadas irá zerar!')
+
+        const urlBase = 'http://localhost:8080/api/'
+
+        fetch(urlBase + 'musicas')
+        .then(resposta => resposta.json())
+        .then(dados => console.log(dados))
     </script>
 </body>
 </html>
