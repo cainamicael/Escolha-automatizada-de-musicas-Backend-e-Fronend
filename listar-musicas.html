@@ -22,25 +22,27 @@
         <div class="conteudo">
 
             <div class="informacoes">
-                <p>60 MÚSICAS CADASTRADAS</p>
-                <p>35 MÚSICAS JÁ TOCADAS</p>
+                <p id="musicas-cadastradas">MÚSICAS CADASTRADAS</p>
+                <p id="musicas-tocadas">MÚSICAS JÁ TOCADAS</p>
             </div>
 
-            <div class="modulo">
-                <span>ID:</span>
-                <p>1</p>
-
-                <span>NOME:</span>
-                <p>Nome da música</p>
-
-                <span>QUEM CANTA:</span>
-                <p>Nome de quem canta a música</p>
-
-                <span>CATEGORIA:</span>
-                <p>Adoração</p>
-
-                <span>QUANDO FOI TOCADA: </span>
-                <p>21/08/2023</p>
+            <div class="modulos">
+                <div class="modulo">
+                    <span>ID:</span>
+                    <p>1</p>
+    
+                    <span>NOME:</span>
+                    <p>Nome da música</p>
+    
+                    <span>QUEM CANTA:</span>
+                    <p>Nome de quem canta a música</p>
+    
+                    <span>CATEGORIA:</span>
+                    <p>Adoração</p>
+    
+                    <span>QUANDO FOI TOCADA: </span>
+                    <p>21/08/2023</p>
+                </div>
             </div>
         </div>   
     </div>   
@@ -50,9 +52,56 @@
 
         const urlBase = 'http://localhost:8080/api/'
 
+        //Setando as músicas cadastradas e tocadas
+        fetch(urlBase + 'quantidades')
+        .then(resposta => resposta.json())
+        .then(quantidades => {
+            const musicasCadastradas = quantidades.quantidadeRegistros
+            const musicasTocadas = quantidades.quantidadeMusicasTocadas
+
+            //Mudando os textos
+            document.getElementById('musicas-cadastradas').innerText = musicasCadastradas + ' MÚSICAS CADASTRADAS'
+            
+            document.getElementById('musicas-tocadas').innerText = musicasTocadas + ' MÚSICAS JÁ TOCADAS'
+        })
+
         fetch(urlBase + 'musicas')
         .then(resposta => resposta.json())
-        .then(dados => console.log(dados))
+        .then(dados => {
+            const modulos = document.querySelector('.modulos')
+            let adicionar = ''
+
+            dados.forEach(dado => {
+                let data;
+
+                if(dado.dataUltimaVezTocada != null) {
+                    data = dado.dataUltimaVezTocada
+                } else {
+                    data = 'A música ainda não foi tocada!'
+                }
+
+                adicionar += `
+                    <div class="modulo">
+                        <span>ID:</span>
+                        <p>${dado.id}</p>
+
+                        <span>NOME:</span>
+                        <p>${dado.nome}</p>
+
+                        <span>QUEM CANTA:</span>
+                        <p>${dado.cantor}</p>
+
+                        <span>CATEGORIA:</span>
+                        <p>${dado.categoria}</p>
+
+                        <span>QUANDO FOI TOCADA: </span>
+                        <p>${data}</p>
+                    </div>
+                `
+            })
+
+            modulos.innerHTML = adicionar
+        })
     </script>
 </body>
 </html>
