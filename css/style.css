@@ -77,31 +77,19 @@ html, body {
     margin-bottom: 25px;
 }
 
-.modulo a {
-    display: block;
+.modulo button {
+    border: 0;
     text-decoration: none;
-    padding: 8px;
+    padding: 10px 30px;
     color: #242423;
     background-color: white;
     border-radius: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
-/*Cancelar e Confirmar*/
-
-.confirmar a {
-    text-align: center;
-    text-decoration: none;
-    color: #242423;
-    background-color: #ccab1a;
-}
-
-.cancelar a {
-    text-align: center;
-    text-decoration: none;
-    color: #242423;
-    background-color: white;
-
+.modulo button:hover {
+    background-color: #e1e1e1;
 }
 
 /*Confirmar e cancelar*/
@@ -109,22 +97,33 @@ html, body {
     text-align: center;
 }
 
-.final a {
+.final button {
     box-shadow: 0px 0px 10px 0px #000000;
     display: block;
+    width: 100%;
+    text-align: center;
+    border: 0;
     color: #242423;
     padding: 15px 0;
-    text-decoration: none;
     font-size: 20px;
     font-weight: lighter;
+    cursor: pointer;
    
 }
 
-a#confirmar {
+button#confirmar {
     background-color: #ccab1a;
 }
 
-a#cancelar {
+#confirmar:hover {
+    background-color: #bd9f17;
+}
+
+#cancelar:hover {
+    background-color: #e1e1e1;
+}
+
+button#cancelar {
     background-color: white;
 }
 
