@@ -22,4 +22,6 @@ public interface MusicaRepository extends JpaRepository<Musica, Long> {
 	//Para sabermos a quantidade de músicas que foram tocadas, para quando todas forem tocadas, resetarmos as musicas tocadas
 	@Query(value = "SELECT COUNT(*) FROM tb_musicas WHERE data_ultima_vez_tocada IS NOT NULL;", nativeQuery = true)
 	Long countPlayedMusics();
+	
+	//criar outra query para quando todas musicas forem puladas, resetar o pular
 }
