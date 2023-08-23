@@ -35,6 +35,11 @@ public class MusicaController {
 		return service.listarTudo();
 	}
 	
+	@GetMapping(value = "musicas/tocadas")
+	public List<MusicaDTO> listarTocadas() {
+		return service.listarTocadas();
+	}
+	
 	@GetMapping("quantidades")
 	public QuantidadeDTO quantidades() {
 		return service.quantidades();

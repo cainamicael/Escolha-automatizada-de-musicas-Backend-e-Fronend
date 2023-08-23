@@ -1,5 +1,6 @@
 package io.github.cainamicael.musicas.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import io.github.cainamicael.musicas.models.Musica;
 import io.github.cainamicael.musicas.repositories.MusicaRepository;
 import io.github.cainamicael.musicas.representations.MusicaDTO;
-import io.github.cainamicael.musicas.representations.MusicaMinDTO;
 import io.github.cainamicael.musicas.representations.MusicaMinDTO;
 import io.github.cainamicael.musicas.representations.QuantidadeDTO;
 
@@ -56,6 +56,17 @@ public class MusicaService {
 		return musicasDTO;
 	}
 	
+	public List<MusicaDTO> listarTocadas() {
+		Optional<List<Musica>> musicasTocadasOptional = repository.findByDataUltimaVezTocadaNotNull();
+		
+		if(musicasTocadasOptional.isPresent()) {
+			List<MusicaDTO> musicasDTO = musicasTocadasOptional.get().stream().map(x -> new MusicaDTO(x)).toList();
+			return musicasDTO;
+		} else {
+			return null;
+		}
+	}
+	
 	public QuantidadeDTO quantidades() {
 		Long quantidadeRegistros = repository.count();
 		Long quantidadeMusicasTocadas = repository.countPlayedMusics();
@@ -67,6 +78,9 @@ public class MusicaService {
 		Optional<Musica> musicaOptionalNaoRepetida = repository.findOneRandomUnplayedMusicByCategory(categoria);
 		Optional<Musica> musicaOptionalRepetida = repository.findByCategoriaPlayedMusicOrderByData(categoria);
 
+		Optional<Musica> musicaOptionalNaoRepetidaIgnorePular = repository.findOneRandomUnplayedMusicByCategoryIgnorePular(categoria);
+		Optional<Musica> musicaOptionalRepetidaIgnorePular = repository.findByCategoriaPlayedMusicOrderByDataIgnorePular(categoria);
+		
 		zerarTocadasQuandoTodasForemTocadas();
 		
 		if (musicaOptionalNaoRepetida.isPresent()) {
@@ -75,8 +89,20 @@ public class MusicaService {
 			repository.save(musica);
 			
 			return new MusicaDTO(musica);
-		} else {
+		} else if(musicaOptionalRepetida.isPresent()){
 			Musica musica = musicaOptionalRepetida.get();
+			musica.setPularMusica(true);
+			repository.save(musica);
+			
+			return new MusicaDTO(musica);
+		} else if(musicaOptionalNaoRepetidaIgnorePular.isPresent()) {
+			Musica musica = musicaOptionalNaoRepetidaIgnorePular.get();
+			musica.setPularMusica(true);
+			repository.save(musica);
+			
+			return new MusicaDTO(musica);
+		} else {
+			Musica musica = musicaOptionalRepetidaIgnorePular.get();
 			musica.setPularMusica(true);
 			repository.save(musica);
 			
