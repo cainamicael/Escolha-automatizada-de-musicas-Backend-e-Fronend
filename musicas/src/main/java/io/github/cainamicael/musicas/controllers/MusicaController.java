@@ -46,7 +46,7 @@ public class MusicaController {
 	}
 	
 	@GetMapping(value = "musica", params = "categoria")
-	public MusicaDTO mostrmusicaSorteada(@RequestParam("categoria") String categoria) {
+	public MusicaDTO musicaSorteada(@RequestParam("categoria") String categoria) {
 		return service.musicaSorteada(categoria.toUpperCase());
 	}
 	
