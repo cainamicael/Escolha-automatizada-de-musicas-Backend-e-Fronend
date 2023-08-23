@@ -46,36 +46,31 @@
         //alert('AVISO: Não esqueça de clicar no confirmar!')
         const urlBase = 'http://localhost:8080/api/'
 
-        cancelar()
-
+        //Pegando a categoria assim que abre a página (default)
         var categoriaSelecionada;
         const categoriaInicial = document.getElementById('selecao').value
         categoriaSelecionada = categoriaInicial
 
-        console.log(categoriaSelecionada)
-
         setarValores(categoriaSelecionada)
 
+        //Acionado caso haja mudança de categoria
         function pegarValor() {
             let categoriaAlterada = document.getElementById('selecao').value 
             categoriaSelecionada = categoriaAlterada
 
-            console.log(categoriaSelecionada)
-
             setarValores(categoriaSelecionada)
         }
 
+        //Visual de como vão aparecer as musicas
         function setarValores(categoriaSelecionada) {
             fetch(urlBase + `musica?categoria=${categoriaSelecionada}`)
             .then(res => res.json())
             .then(musica => {
-                console.log(musica)
-
                 const modulos = document.querySelector('.modulos')
 
                 modulos.innerHTML = `
                     <div class="modulo">
-                        <h4>${musica.id}</h4>
+                        <h4 class="id">Id: ${musica.id}</h4>
                         <h2 class="musica">${musica.nome}</h2>
                         <h2 class="cantor">(${musica.cantor})</h2>
                         <button onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
@@ -90,13 +85,11 @@
             fetch(urlBase + `musica/pular/${id}`)
             .then(res => res.json())
             .then(novaMusica => {
-                console.log(novaMusica)
-
                 const modulos = document.querySelector('.modulos')
 
                 modulos.innerHTML = `
                     <div class="modulo">
-                        <h4>Id: ${novaMusica.id}</h4>
+                        <h4 class="id">Id: ${novaMusica.id}</h4>
                         <h2 class="musica">${novaMusica.nome}</h2>
                         <h2 class="cantor">(${novaMusica.cantor})</h2>
                         <button onclick="botaoClicado(${novaMusica.id})">Escolher outra Música</button>
@@ -107,15 +100,36 @@
         }
 
         //Confirmando
-        function confirmar() {
-            alert('Confirmando')
+        async function confirmar() {
+            const id = parseInt(document.querySelector('.id').textContent.match(/\d+/)[0])
+            const nome = document.querySelector('.musica').textContent
+            const cantor = document.querySelector('.cantor').textContent.replace(/[()]/g, '')
+            const categoria = categoriaSelecionada
+
+            const obj = [{id, nome, cantor, categoria}]
+
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            }
+
+            const res = await fetch(urlBase + 'musicas/confirmar', config)
+
+            if(res.ok) { 
+                alert('Confirmada com sucesso')
+            } else {
+                alert('Música não confirmada! Ocorreu um erro!')
+            }
         }
 
-        function cancelar() {
-            fetch(urlBase + 'musicas/cancelar')
-            .then(e => {
-                console.log(e.status)
-            })
+        //cancelando
+        async function cancelar() {
+            let res = await fetch(urlBase + 'musicas/cancelar')
+            console.log(`Status da requisição de cancelamento: ${res.status}`)
+            window.location.href = '../index.html'
         }
     </script>
 </body>

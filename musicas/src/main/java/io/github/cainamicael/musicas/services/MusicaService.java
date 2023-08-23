@@ -125,6 +125,7 @@ public class MusicaService {
 	public ResponseEntity<String> confirmarMusicas(List<MusicaDTO> musicas) {
 		//Setar a data
 		for (MusicaDTO musica : musicas) {
+			musica.setPularMusica(false);
 			musica.setDataUltimaVezTocada(new Date());
 			repository.save(new Musica(musica));
 		}
