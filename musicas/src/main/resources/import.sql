@@ -1,7 +1,7 @@
 --Adoração
 INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Deus é Deus', 'Delino Marçal' , 'ADORACAO', FALSE);
 INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Grande é O Senhor', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Tua é a glória', 'ADORACAO'), FALSE;
+INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Tua é a glória', 'ADORACAO', FALSE);
 INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Consagração', 'ADORACAO', FALSE);
 INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Ao Único', 'ADORACAO', FALSE);
 INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Sei que foi pago um alto preço', 'ADORACAO', FALSE);

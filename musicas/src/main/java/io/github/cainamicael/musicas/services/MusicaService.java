@@ -45,6 +45,7 @@ public class MusicaService {
 	}
 	
 	public ResponseEntity<Musica> salvarMusica(MusicaMinDTO musica) {
+		musica.setPularMusica(false);
 		Musica musicaSalva = repository.save(new Musica(musica));
 		return ResponseEntity.ok(musicaSalva);
 	}

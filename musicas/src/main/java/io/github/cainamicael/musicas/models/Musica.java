@@ -44,5 +44,6 @@ public class Musica {
 		this.nome = musica.getNome();
 		this.cantor = musica.getCantor();
 		this.categoria = musica.getCategoria();
+		this.pularMusica = musica.getPularMusica();
 	}
 }

@@ -12,12 +12,14 @@ public class MusicaMinDTO {
 	private String nome;
 	private String cantor;
 	private CategoriasEnum categoria;
+	private Boolean pularMusica;
 
 	
 	public MusicaMinDTO(Musica musica) {
 		this.nome = musica.getNome();
 		this.cantor = musica.getCantor();
 		this.categoria = musica.getCategoria();
+		this.pularMusica = musica.getPularMusica();
 	}
 	
 }

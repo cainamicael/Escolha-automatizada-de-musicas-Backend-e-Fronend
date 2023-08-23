@@ -30,17 +30,14 @@
             </div>
 
             <div class="modulos">
-                <div class="modulo">
-                    <h4>*</h4>
-                    <h2 class="musica">Musica escolhida</h2>
-                    <h2 class="cantor">(quem canta a musica)</h2>
-                    <button>Escolher outra Música</button>
-                </div>
+
+                <!--Dinamicamente-->
+
             </div>
 
             <div class="final">
-                <button id="confirmar">Confirmar</button>
-                <button id="cancelar">Cancelar</button>
+                <button id="confirmar" onclick="confirmar()">Confirmar</button>
+                <button id="cancelar" onclick="cancelar()">Cancelar</button>
             </div>
 
         </div>   
@@ -48,6 +45,8 @@
     <script>
         //alert('AVISO: Não esqueça de clicar no confirmar!')
         const urlBase = 'http://localhost:8080/api/'
+
+        cancelar()
 
         var categoriaSelecionada;
         const categoriaInicial = document.getElementById('selecao').value
@@ -76,13 +75,46 @@
 
                 modulos.innerHTML = `
                     <div class="modulo">
-                        <h4>*</h4>
+                        <h4>${musica.id}</h4>
                         <h2 class="musica">${musica.nome}</h2>
                         <h2 class="cantor">(${musica.cantor})</h2>
-                        <button>Escolher outra Música</button>
+                        <button onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
                     </div>
                 
                 `
+            })
+        }
+
+        //Escolhendo outra música
+        function botaoClicado(id) {
+            fetch(urlBase + `musica/pular/${id}`)
+            .then(res => res.json())
+            .then(novaMusica => {
+                console.log(novaMusica)
+
+                const modulos = document.querySelector('.modulos')
+
+                modulos.innerHTML = `
+                    <div class="modulo">
+                        <h4>Id: ${novaMusica.id}</h4>
+                        <h2 class="musica">${novaMusica.nome}</h2>
+                        <h2 class="cantor">(${novaMusica.cantor})</h2>
+                        <button onclick="botaoClicado(${novaMusica.id})">Escolher outra Música</button>
+                    </div>
+                
+                `
+            })
+        }
+
+        //Confirmando
+        function confirmar() {
+            alert('Confirmando')
+        }
+
+        function cancelar() {
+            fetch(urlBase + 'musicas/cancelar')
+            .then(e => {
+                console.log(e.status)
             })
         }
     </script>
