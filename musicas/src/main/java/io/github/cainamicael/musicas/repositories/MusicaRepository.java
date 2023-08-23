@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import io.github.cainamicael.musicas.enums.CategoriasEnum;
 import io.github.cainamicael.musicas.models.Musica;
 
 public interface MusicaRepository extends JpaRepository<Musica, Long> {
