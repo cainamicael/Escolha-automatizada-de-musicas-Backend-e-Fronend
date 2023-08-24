@@ -75,38 +75,29 @@
             modulos.innerHTML = iterarQuantidades(valorSelecionado)            
         }
 
-        function iterarQuantidades(valorSelecionado) {
-            var adicionar = '';
+        async function iterarQuantidades(valorSelecionado) {
+            var resultados = []
 
-            for(let i = 0; i < valorSelecionado; i++) {
+            for (let i = 0; i < valorSelecionado; i++) {
+                const categoria = (i === valorSelecionado - 1) ? 'celebracao' : 'adoracao'
+                const res = await fetch(urlBase + `musica?categoria=${categoria}`)
+                const musica = await res.json()
 
-                if(i == valorSelecionado-1) {
-                    //Faz o fetch para músicas de celebração
-                    fetch(urlBase + `musica?categoria=celebracao`)
-                    .then(res => res.json())
-                    .then(musica => {
-                        adicionar += `
-                            <div class="modulo">
-                                <h4>${i+1}ª</h4>
-                                <input type="hidden" id="hidden-id" value="${musica.id}">
-                                <h2 class="musica">${musica.nome}</h2>
-                                <h2 class="cantor">(${musica.cantor})</h2>
-                                <button onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
-                            </div>
-                         `
-                    })
-                } else {
-                    //Faz o fetch para músicas de adoração
-                    adicionar += `
-                        <div class="modulo">
-                            <h4>${i+1}ª</h4>
-                            <h2 class="musica">Musica escolhida</h2>
-                            <h2 class="cantor">(quem canta a musica)</h2>
-                            <button>Escolher outra Música</button>
-                        </div>
-                    `
-                }
+                resultados.push(`
+                    <div class="modulo">
+                        <h4>${i + 1}ª</h4>
+                        <input type="hidden" id="hidden-id" value="${musica.id}">
+                        <h2 class="musica">${musica.nome}</h2>
+                        <h2 class="cantor">(${musica.cantor})</h2>
+                        <button onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
+                    </div>
+                `)
             }
+
+            var adicionar = ''
+            resultados.forEach(r => adicionar += r)
+
+            console.log(adicionar)
 
             return adicionar
         }
