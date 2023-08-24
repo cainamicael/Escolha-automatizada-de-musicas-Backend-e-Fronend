@@ -1,21 +1,21 @@
 --Adoração
-INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Deus é Deus', 'Delino Marçal' , 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Grande é O Senhor', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Tua é a glória', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Consagração', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Ao Único', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Sei que foi pago um alto preço', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Nada Além do Sangue', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Aclame ao Senhor', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Reina sobre Mim', 'ADORACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Digno é O Senhor', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Deus é Deus', 'Delino Marçal', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Grande é O Senhor', 'Adhemar de Campos', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Tua é a glória', 'Rachel Novaes', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Consagração', 'Aline Barros', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Ao Único', 'Corinhos', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Sei que foi pago um alto preço', 'Asaph Borba', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Nada Além do Sangue', 'Fernandinho', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Aclame ao Senhor', 'Diante do trono', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Reina sobre Mim', 'Nívea Soares', 'ADORACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Digno é O Senhor', 'Aline Barros', 'ADORACAO', FALSE);
 
 --Celebração
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Porque Ele vive', 'CELEBRACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Fico feliz', 'CELEBRACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Ele é O Leão da tribo de Judá', 'CELEBRACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('O nosso General é Cristo', 'CELEBRACAO', FALSE);
-INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Quem nos separará', 'CELEBRACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Porque Ele vive', 'Harpa Cristã', 'CELEBRACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Fico feliz', 'Aline Barros', 'CELEBRACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Ele é O Leão da tribo de Judá', 'Corinho', 'CELEBRACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('O nosso General é Cristo', 'Adhemar de Campos', 'CELEBRACAO', FALSE);
+INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Quem nos separará', 'Diante do Trono', 'CELEBRACAO', FALSE);
 
 -- INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Deus é Deus', 'Delino Marçal' , 'ADORACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Grande é O Senhor', 'ADORACAO', FALSE);
