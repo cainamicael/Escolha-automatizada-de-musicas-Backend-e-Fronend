@@ -1,4 +1,4 @@
-alert('AVISO: Não esqueça de clicar no confirmar!')
+alert('AVISO: Não esqueça de clicar no confirmar e caso desista, clique em cancelar!')
 const urlBase = 'http://localhost:8080/api/'
 
 //Pegando a categoria assim que abre a página (default)
@@ -75,7 +75,12 @@ async function confirmar() {
         const res = await fetch(urlBase + 'musicas/confirmar', config)
 
         if(res.ok) { 
-            alert('Confirmada com sucesso')
+            alert(`
+                Confirmada com sucesso!
+
+                ${obj[0].nome} - ${obj[0].cantor}
+                
+            `)
         } else {
             alert('Música não confirmada! Ocorreu um erro!')
         }
