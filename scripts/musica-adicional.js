@@ -71,13 +71,17 @@ async function confirmar() {
         body: JSON.stringify(obj)
     }
 
-    const res = await fetch(urlBase + 'musicas/confirmar', config)
+    try {
+        const res = await fetch(urlBase + 'musicas/confirmar', config)
 
-    if(res.ok) { 
-        alert('Confirmada com sucesso')
-        window.location.href = '../index.html'
-    } else {
-        alert('Música não confirmada! Ocorreu um erro!')
+        if(res.ok) { 
+            alert('Confirmada com sucesso')
+            window.location.href = '../index.html'
+        } else {
+            alert('Música não confirmada! Ocorreu um erro!')
+        }
+    }  catch(e) {
+        alert('Ouve um erro no servidor!')
     }
 }
 

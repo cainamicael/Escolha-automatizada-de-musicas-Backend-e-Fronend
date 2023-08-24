@@ -57,31 +57,7 @@ html, body {
     margin: 0 30px;
 }
 
-.selecao {
-    width: 100%;
-    height: 90px;
-    background-color: #ccab1a;
-    padding: 10px;
-    position: relative;
-}
-
-.selecao p {
-    color: #242423;
-    text-align: center;
-    font-weight: lighter;
-    font-size: 20px;
-}
-
-.selecao select {
-    text-align: center;
-    position: relative;
-    top: 12px;
-    left: 50%;
-    transform: translate(-50%);
-    padding: 1px 10px;
-    border-radius: 20px;
-    color: #242423;
-}
+/*Modulos*/
 
 .modulo {
     padding: 15px 5%;

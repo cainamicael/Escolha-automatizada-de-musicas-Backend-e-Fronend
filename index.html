@@ -20,15 +20,6 @@
     
     <div class="container">
         <div class="conteudo">
-
-            <div class="selecao">
-                <p>Selecione a quantidade:</p>
-                <select name="quantidade" id="selecao" onchange="pegarValor()">
-                    <option value="3">03 Músicas</option>
-                    <option value="4">04 Músicas</option>
-                </select>
-            </div>
-
             <div class="modulos">
 
                 <!-- Dinamicamente -->
@@ -45,9 +36,9 @@
     
     <div class="container">
         <div class="ancoras">
-            <a href="html/cadastrar-nova-musica.html">Adicionar nova música</a>
-            <a href="html/listar-musicas.html">Listar músicas tocadas</a>
-            <a href="html/musica-adicional.html">Escolher música adicional</a>
+            <a href="html/musica-adicional.html">Quero mais uma música</a>
+            <a href="html/listar-musicas.html">Listar músicas já tocadas</a>
+            <a href="html/cadastrar-nova-musica.html">Cadastrar nova música</a>
         </div>
     </div>
     <script>
@@ -55,25 +46,14 @@
 
         const urlBase = 'http://localhost:8080/api/'
 
-        //Pegar o primeiro valor adicionado
-        var valorSelecionado;
-        const valorInicial = document.getElementById('selecao').value
-        valorSelecionado = parseInt(valorInicial)
+        //Pegar a quantidade de músicas
+        var valorSelecionado = 3
 
         const modulos = document.querySelector('.modulos')
         modulos.innerHTML = ''
 
         iterarQuantidades(valorSelecionado)
         .then(resultado => modulos.innerHTML = resultado)
-
-        //Monitorar quando muda o valor
-        function pegarValor() {
-            let valorAlterado = document.getElementById('selecao').value 
-            valorSelecionado = parseInt(valorAlterado)
-
-            iterarQuantidades(valorSelecionado)
-            .then(resultado => modulos.innerHTML = resultado)           
-        }
 
         async function iterarQuantidades(valorSelecionado) {
             var resultados = []
@@ -86,6 +66,7 @@
                 resultados.push(`
                     <div class="modulo" id="modulo-${i + 1}">
                         <h4>${i + 1}ª</h4>
+                        <input type="hidden" id="hidden-${i + 1}" value="${musica.id}">
                         <h2 class="musica" id="musica-${i + 1}">${musica.nome}</h2>
                         <h2 class="cantor" id="cantor-${i + 1}">(${musica.cantor})</h2>
                         <button id="botao-${i + 1}" onclick="botaoClicado(${musica.id}, ${i + 1})">Escolher outra Música</button>
@@ -105,6 +86,7 @@
 
                 moduloEspecifico.innerHTML = `
                     <h4>${posicao}ª</h4>
+                    <input type="hidden" id="hidden-${posicao}" value="${novaMusica.id}">
                     <h2 class="musica" id="musica-${posicao}">${novaMusica.nome}</h2>
                     <h2 class="cantor" id="cantor-${posicao}">(${novaMusica.cantor})</h2>
                     <button id="botao-${posicao}" onclick="botaoClicado(${novaMusica.id}, ${posicao})">Escolher outra Música</button>
@@ -114,6 +96,38 @@
         
         //Confirmando
         async function confirmar() {
+            const obj = []
+
+            for(let i = 0; i < valorSelecionado; i++) {
+                const id = parseInt(document.getElementById(`hidden-${i + 1}`).value)
+                const nome = document.getElementById(`musica-${i + 1}`).textContent
+                const cantor = document.getElementById(`cantor-${i + 1}`).textContent.replace(/[()]/g, '')
+                const categoria = (i === valorSelecionado-1) ? 'CELEBRACAO' : 'ADORACAO'
+
+                obj.push({id, nome, cantor, categoria})
+            }
+
+            console.log(JSON.stringify(obj))
+            
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            }
+        
+            try {
+                const res = await fetch(urlBase + 'musicas/confirmar', config)
+        
+                if(res.ok) { 
+                    alert('Confirmada com sucesso')
+                } else {
+                    alert('Música não confirmada! Ocorreu um erro!')
+                }
+            }  catch(e) {
+                alert('Ouve um erro no servidor!')
+            }
         }
 
         //testar o cancelar no bd
