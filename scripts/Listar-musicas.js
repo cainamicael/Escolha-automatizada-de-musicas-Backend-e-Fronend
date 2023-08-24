@@ -1,5 +1,4 @@
 alert('Quando todas as músicas forem tocadas, a contagem de músicas tocadas irá zerar!')
-const urlBase = 'http://localhost:8080/api/'
 
 //Setando as músicas cadastradas e tocadas
 fetch(urlBase + 'quantidades')

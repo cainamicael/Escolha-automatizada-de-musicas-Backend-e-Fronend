@@ -1,5 +1,4 @@
 alert('AVISO: Não esqueça de clicar no confirmar e caso desista, clique em cancelar!')
-const urlBase = 'http://localhost:8080/api/'
 
 //Pegando a categoria assim que abre a página (default)
 var categoriaSelecionada;

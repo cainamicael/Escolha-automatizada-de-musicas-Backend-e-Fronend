@@ -1,6 +1,5 @@
 alert('AVISO: Não esqueça de clicar no confirmar e caso desista, clique em cancelar!')
 
-const urlBase = 'http://localhost:8080/api/'
 
 //Pegar a quantidade de músicas
 var valorSelecionado = 3

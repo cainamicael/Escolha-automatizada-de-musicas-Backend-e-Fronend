@@ -1,5 +1,3 @@
-const urlBase = 'http://localhost:8080/api/'
-
 document.getElementById('formulario').addEventListener('submit', async (e) => {
     e.preventDefault()
 
