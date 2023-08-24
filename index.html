@@ -65,14 +65,16 @@
         const modulos = document.querySelector('.modulos')
         modulos.innerHTML = ''
 
-        modulos.innerHTML = iterarQuantidades(valorSelecionado)
+        iterarQuantidades(valorSelecionado)
+        .then(resultado => modulos.innerHTML = resultado)
 
         //Monitorar quando muda o valor
         function pegarValor() {
             let valorAlterado = document.getElementById('selecao').value 
             valorSelecionado = parseInt(valorAlterado)
 
-            modulos.innerHTML = iterarQuantidades(valorSelecionado)            
+            iterarQuantidades(valorSelecionado)
+            .then(resultado => modulos.innerHTML = resultado)           
         }
 
         async function iterarQuantidades(valorSelecionado) {
