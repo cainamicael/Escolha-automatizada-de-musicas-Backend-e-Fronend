@@ -76,7 +76,6 @@ async function confirmar() {
 
         if(res.ok) { 
             alert('Confirmada com sucesso')
-            window.location.href = '../index.html'
         } else {
             alert('Música não confirmada! Ocorreu um erro!')
         }

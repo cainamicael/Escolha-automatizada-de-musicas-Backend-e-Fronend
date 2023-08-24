@@ -77,7 +77,21 @@ async function confirmar() {
         const res = await fetch(urlBase + 'musicas/confirmar', config)
 
         if(res.ok) { 
-            alert('Confirmada com sucesso')
+            alert(`
+            Músicas confirmadas! 
+            
+            Se você estiver usando o celular, 
+            você pode copiar e colar no grupo:
+
+            Graça e paz a todos! 
+            Seguem as músicas que serão tocadas:
+            
+            ${obj[0].nome} - ${obj[0].cantor}
+            ${obj[1].nome} - ${obj[1].cantor}
+            ${obj[2].nome} - ${obj[2].cantor}
+
+            Fiquem todos com Deus!
+        `)
         } else {
             alert('Música não confirmada! Ocorreu um erro!')
         }
@@ -85,8 +99,6 @@ async function confirmar() {
         alert('Ouve um erro no servidor!')
     }
 }
-
-//testar o cancelar no bd
 
 //cancelando
 async function cancelar() {
