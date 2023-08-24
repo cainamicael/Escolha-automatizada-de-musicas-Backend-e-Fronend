@@ -86,38 +86,37 @@
                 const musica = await res.json()
 
                 resultados.push(`
-                    <div class="modulo">
+                    <div class="modulo" id="modulo-${i + 1}">
                         <h4>${i + 1}ª</h4>
-                        <input type="hidden" id="hidden-id" value="${musica.id}">
-                        <h2 class="musica">${musica.nome}</h2>
-                        <h2 class="cantor">(${musica.cantor})</h2>
-                        <button onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
+                        <h2 class="musica" id="musica-${i + 1}">${musica.nome}</h2>
+                        <h2 class="cantor" id="cantor-${i + 1}">(${musica.cantor})</h2>
+                        <button id="botao-${i + 1}" onclick="botaoClicado(${musica.id}, ${i + 1})">Escolher outra Música</button>
                     </div>
                 `)
             }
-
             return resultados.join('');
         }
 
         //Escolhendo outra música
-        function botaoClicado(id) {
+        function botaoClicado(id, posicao) {
             fetch(urlBase + `musica/pular/${id}`)
             .then(res => res.json())
             .then(novaMusica => {
-                const modulos = document.querySelector('.modulos')
+                //Mudar os valores do módulo específico
+                document.getElementById(`modulo-${posicao}`).value = ''
 
-                modulos.innerHTML = `
-                    <div class="modulo">
-                        <h4 class="id">Id: ${novaMusica.id}</h4>
-                        <h2 class="musica">${novaMusica.nome}</h2>
-                        <h2 class="cantor">(${novaMusica.cantor})</h2>
-                        <button onclick="botaoClicado(${novaMusica.id})">Escolher outra Música</button>
+                document.getElementById(`modulo-${posicao}`).innerHTML = `
+                    <div class="modulo" id="modulo-${posicao}">
+                        <h4>${posicao}ª</h4>
+                        <h2 class="musica" id="musica-${posicao}">${novaMusica.nome}</h2>
+                        <h2 class="cantor" id="cantor-${posicao}">(${novaMusica.cantor})</h2>
+                        <button id="botao-${posicao}" onclick="botaoClicado(${novaMusica.id}, ${posicao})">Escolher outra Música</button>
                     </div>
-                
                 `
+
+                console.log(posicao, id, novaMusica.id)
             })
         }
-
     </script>
 </body>
 </html>
