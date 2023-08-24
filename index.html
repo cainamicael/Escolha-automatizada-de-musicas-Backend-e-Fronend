@@ -103,9 +103,9 @@
             .then(res => res.json())
             .then(novaMusica => {
                 //Mudar os valores do módulo específico
-                document.getElementById(`modulo-${posicao}`).value = ''
+                const moduloEspecifico = document.getElementById(`modulo-${posicao}`)
 
-                document.getElementById(`modulo-${posicao}`).innerHTML = `
+                moduloEspecifico.innerHTML = `
                     <div class="modulo" id="modulo-${posicao}">
                         <h4>${posicao}ª</h4>
                         <h2 class="musica" id="musica-${posicao}">${novaMusica.nome}</h2>
@@ -113,8 +113,6 @@
                         <button id="botao-${posicao}" onclick="botaoClicado(${novaMusica.id}, ${posicao})">Escolher outra Música</button>
                     </div>
                 `
-
-                console.log(posicao, id, novaMusica.id)
             })
         }
     </script>
