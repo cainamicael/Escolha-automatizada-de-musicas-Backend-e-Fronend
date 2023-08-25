@@ -19,17 +19,6 @@ INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Quem nos
 
 
 --Sem cantor
-
--- INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Deus é Deus', 'Delino Marçal' , 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Grande é O Senhor', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Tua é a glória', 'ADORACAO'), FALSE;
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Consagração', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Ao Único', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Sei que foi pago um alto preço', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Nada Além do Sangue', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Aclame ao Senhor', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Reina sobre Mim', 'ADORACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Digno é O Senhor', 'ADORACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Aos pés da cruz', 'ADORACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Digno de glória', 'ADORACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Poderoso Deus', 'ADORACAO', FALSE);
@@ -74,9 +63,3 @@ INSERT INTO tb_musicas (nome, cantor, categoria, pular_musica) VALUES ('Quem nos
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('És tu única razão', 'CELEBRACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Os anjos Te louvam', 'CELEBRACAO', FALSE);
 -- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('A alegria está no coração', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Aquele que está feliz', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Porque Ele vive', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Fico feliz', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Ele é O Leão da tribo de Judá', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('O nosso General é Cristo', 'CELEBRACAO', FALSE);
--- INSERT INTO tb_musicas (nome, categoria, pular_musica) VALUES ('Quem nos separará', 'CELEBRACAO', FALSE);
