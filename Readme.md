@@ -51,7 +51,25 @@ O sistema será desenvolvido utilizando as seguintes tecnologias:
 
 ## Como ficou o front-end
 
+1. Tela inicial:
 
+![Imagem da tela inicial](https://github.com/cainamicael/Escolha-automatizada-de-musicas-Backend-e-Fronend/blob/main/Imagens%20do%20front-end/img%2001%20-%20Index.png)
+
+2. Página para escolher música adicional:
+
+![Imagem da página para escolher música adicional](https://github.com/cainamicael/Escolha-automatizada-de-musicas-Backend-e-Fronend/blob/main/Imagens%20do%20front-end/img%2002%20-%20Quero%20mais%20uma%20m%C3%BAsica.png)
+
+3. Página para listar as músicas que já foram tocadas:
+
+![Imagem da página para listar as músicas que já foram tocadas](https://github.com/cainamicael/Escolha-automatizada-de-musicas-Backend-e-Fronend/blob/main/Imagens%20do%20front-end/img%2003%20-%20Listar%20m%C3%BAsicas%20j%C3%A1%20tocadas.png)
+
+4. Página para listar todas as músicas cadastradas:
+
+![Imagem da página para listar todas as músicas cadastradas](https://github.com/cainamicael/Escolha-automatizada-de-musicas-Backend-e-Fronend/blob/main/Imagens%20do%20front-end/img%2004%20-%20Listar%20todas%20as%20%20m%C3%BAsicas.png)
+
+5. Página para cadastrar nova música:
+
+![Imagem da página para cadastrar nova música](https://github.com/cainamicael/Escolha-automatizada-de-musicas-Backend-e-Fronend/blob/main/Imagens%20do%20front-end/img%2005%20-%20Cadastrar%20nova%20m%C3%BAsica.png)
 
 ## Contribuições
 
