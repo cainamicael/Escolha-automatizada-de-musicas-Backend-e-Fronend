@@ -66,24 +66,25 @@ function remover(id) {
 
 }
 
-
-
-
 //Escolhendo outra música
 function botaoClicado(id) {
     fetch(urlBase + `musica/pular/${id}`)
     .then(res => res.json())
-    .then(novaMusica => {
+    .then(musica => {
         //Mudar os valores do módulo específico
-        const moduloEspecifico = document.getElementById(`modulo-${posicao}`)
+        const moduloEspecifico = document.getElementById(`modulo-${id}`)
 
         moduloEspecifico.innerHTML = `
-            <h4>${posicao}ª</h4>
-            <input type="hidden" id="hidden-${posicao}" value="${novaMusica.id}">
-            <h2 class="musica" id="musica-${posicao}">${novaMusica.nome}</h2>
-            <h2 class="cantor" id="cantor-${posicao}">(${novaMusica.cantor})</h2>
-            <button id="botao-${posicao}" onclick="botaoClicado(${novaMusica.id}, ${posicao})">Escolher outra Música</button>
+            <h4>♬</h4>
+            <input type="hidden" id="hidden-${musica.id}" value="${musica.id}">
+            <h2 class="musica" id="musica-${musica.id}">${musica.nome}</h2>
+            <h2 class="cantor" id="cantor-${musica.id}">(${musica.cantor})</h2>
+            <button id="botao-${musica.id}" onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
+            <button id="adicionar" onclick="adicionar()">+</button>
+            <button id="remover" onclick="remover(${musica.id})">-</button>
         `
+        moduloEspecifico.id = `modulo-${musica.id}`
+        console.log(moduloEspecifico.innerHTML)
     })
 }
 
