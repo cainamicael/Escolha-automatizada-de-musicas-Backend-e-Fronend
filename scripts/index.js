@@ -94,6 +94,13 @@ function botaoClicado(id) {
     })
 }
 
+/*
+Falta:
+confirmar
+editar
+adicionar categorias no front, no enum e no db
+*/
+
 //Confirmando
 async function confirmar() {
     const obj = []
