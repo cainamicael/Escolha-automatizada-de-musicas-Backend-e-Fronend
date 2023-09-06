@@ -21,11 +21,36 @@
     
     <div class="container">
         <div class="conteudo">
+            <div class="inicio">
+                <h1>Selecione a catagoria da primeira música:</h1>
+
+                <select name="categoria" id="selecao" onchange="pegarValor()">
+                    <option value="">Selecione</option>
+                    <option value="ADORACAO">Adoração</option>
+                    <option value="CELEBRACAO">Celebração</option>
+                </select>
+            </div>
+
+
             <div class="modulos">
 
                 <!-- Dinamicamente -->
 
+                <!-- Modelo -->
+                
+                <!-- <div class="modulo" id="modulo-1">
+                    <h4>♬</h4>
+                    <input type="hidden" id="hidden-1" value="1">
+                    <h2 class="musica" id="musica-1">Nome da musica</h2>
+                    <h2 class="cantor" id="cantor-1">(Nome do cantor)</h2>
+                    <button id="botao-1" onclick="botaoClicado()">Escolher outra Música</button>
+                    <button id="adicionar" onclick="adicionar()">+</button>
+                    <button id="remover" onclick="remover()">-</button>
+                </div> -->
+    
             </div>
+
+            
 
             <div class="final">
                 <button id="confirmar" onclick="confirmar()">Confirmar</button>

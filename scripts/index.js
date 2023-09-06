@@ -1,38 +1,76 @@
 alert('AVISO: Não esqueça de clicar no confirmar e caso desista, clique em cancelar!')
 
+const arraySelecionadas = []
 
-//Pegar a quantidade de músicas
-var valorSelecionado = 3
-
-const modulos = document.querySelector('.modulos')
-modulos.innerHTML = ''
-
-iterarQuantidades(valorSelecionado)
-.then(resultado => modulos.innerHTML = resultado)
-
-async function iterarQuantidades(valorSelecionado) {
-    var resultados = []
-
-    for (let i = 0; i < valorSelecionado; i++) {
-        const categoria = (i === valorSelecionado - 1) ? 'celebracao' : 'adoracao'
-        const res = await fetch(urlBase + `musica?categoria=${categoria}`)
-        const musica = await res.json()
-
-        resultados.push(`
-            <div class="modulo" id="modulo-${i + 1}">
-                <h4>${i + 1}ª</h4>
-                <input type="hidden" id="hidden-${i + 1}" value="${musica.id}">
-                <h2 class="musica" id="musica-${i + 1}">${musica.nome}</h2>
-                <h2 class="cantor" id="cantor-${i + 1}">(${musica.cantor})</h2>
-                <button id="botao-${i + 1}" onclick="botaoClicado(${musica.id}, ${i + 1})">Escolher outra Música</button>
-            </div>
-        `)
-    }
-    return resultados.join('');
+//Remover a classe inicio
+function removerInicio() {
+    document.querySelectorAll('.inicio').forEach(inicio => inicio.remove())
 }
 
+function pegarValor() {
+    valor = document.getElementById('selecao').value 
+    if(valor != '') {
+        
+        //tirar a classe inicio
+        removerInicio()
+
+        //adicionar módulo com a categoria selecionada
+        fetch(urlBase + `musica?categoria=${valor}`)
+        .then(res => res.json())
+        .then(musica => {
+            console.log(musica)
+            const modulos = document.querySelector('.modulos').innerHTML
+            document.querySelector('.modulos').innerHTML = modulos + `
+                <div class="modulo" id="modulo-${musica.id}">
+                    <h4>♬</h4>
+                    <input type="hidden" id="hidden-${musica.id}" value="${musica.id}">
+                    <h2 class="musica" id="musica-${musica.id}">${musica.nome}</h2>
+                    <h2 class="cantor" id="cantor-${musica.id}">(${musica.cantor})</h2>
+                    <button id="botao-${musica.id}" onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
+                    <button id="adicionar" onclick="adicionar()">+</button>
+                    <button id="remover" onclick="remover(${musica.id})">-</button>
+                </div>
+            `
+        })
+        
+    }
+}
+
+//Quando clicamos no botão +
+function adicionar() {
+    //Pegar tudo o que tem nos módulos, guardar e concatenar
+    const modulos = document.querySelector('.modulos').innerHTML
+
+    document.querySelector('.modulos').innerHTML = modulos + `
+        <div class="inicio">
+            <h1>Selecione a catagoria da primeira música:</h1>
+
+            <select name="categoria" id="selecao" onchange="pegarValor()">
+                <option value="">Selecione</option>
+                <option value="ADORACAO">Adoração</option>
+                <option value="CELEBRACAO">Celebração</option>
+            </select>
+        </div>
+    `
+}
+
+//Quando clicamos no botão -
+function remover(id) {
+    const totalElementos = document.querySelectorAll(`.modulo`).length
+
+    if(totalElementos > 1) {
+        const removerElemento = document.querySelector(`#modulo-${id}`).remove()
+    } else {
+        alert('Insira outras músicas para poder remover esta, ou clique em cancelar e começe do zero')
+    }
+
+}
+
+
+
+
 //Escolhendo outra música
-function botaoClicado(id, posicao) {
+function botaoClicado(id) {
     fetch(urlBase + `musica/pular/${id}`)
     .then(res => res.json())
     .then(novaMusica => {
