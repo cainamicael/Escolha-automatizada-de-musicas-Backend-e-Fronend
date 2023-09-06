@@ -18,7 +18,6 @@ function pegarValor() {
         fetch(urlBase + `musica?categoria=${valor}`)
         .then(res => res.json())
         .then(musica => {
-            console.log(musica)
             const modulos = document.querySelector('.modulos').innerHTML
             document.querySelector('.modulos').innerHTML = modulos + `
                 <div class="modulo" id="modulo-${musica.id}">
@@ -52,6 +51,14 @@ function adicionar() {
             </select>
         </div>
     `
+
+    let totalInicios = document.querySelectorAll('.inicio').length
+
+    document.querySelectorAll('.inicio').forEach((e, indice) => {
+        if(indice != totalInicios-1) {
+            e.remove()
+        }
+    })
 }
 
 //Quando clicamos no botão -
@@ -84,7 +91,6 @@ function botaoClicado(id) {
             <button id="remover" onclick="remover(${musica.id})">-</button>
         `
         moduloEspecifico.id = `modulo-${musica.id}`
-        console.log(moduloEspecifico.innerHTML)
     })
 }
 
