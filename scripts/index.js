@@ -41,7 +41,7 @@ function adicionar() {
 
     document.querySelector('.modulos').innerHTML = modulos + `
         <div class="inicio">
-            <h1>Selecione a catagoria da primeira música:</h1>
+            <h1>Selecione a catagoria da música:</h1>
 
             <select name="categoria" id="selecao" onchange="pegarValor()">
                 <option value="">Selecione</option>
