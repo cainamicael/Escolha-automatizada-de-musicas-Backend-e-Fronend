@@ -11,6 +11,32 @@
 
 <body>
     <div class="container">
+        <div class="modal">
+            <div class="modal-header">
+                <span>Editar - Faça as Alterações</span>
+                <button class="fechar-modal">Fechar</button>
+            </div>
+            <div class="modal-main">
+                <form>
+                    <input type="text" name="nome" placeholder="Nome da música..." value="Música dinâmica" required>
+                    <input type="text" name="cantor" placeholder="Nome de quem canta..." value="Cantor dinâmico"
+                        required>
+
+                    <label for="selecao">Categoria: </label>
+                    <select name="categoria" id="selecao">
+                        <option value="">Selecione</option>
+                        <option value="ADORACAO">Adoração</option>
+                        <option value="CELEBRACAO">Celebração</option>
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="salvar-modal">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="container cadastrar-musica">
             <h3>Músicas</h3>
             <h1>Cadastradas</h1>
@@ -32,6 +58,25 @@
             <div class="modulos">
 
                 <!--Aqui vem dinamicamente o conteúdo-->
+
+                <!-- <div class="modulo">
+                    <span>ID:</span>
+                    <p>${dado.id}</p>
+    
+                    <span>NOME:</span>
+                    <p>${dado.nome}</p>
+    
+                    <span>QUEM CANTA:</span>
+                    <p>${dado.cantor}</p>
+    
+                    <span>CATEGORIA:</span>
+                    <p>${dado.categoria}</p>
+    
+                    <span>QUANDO FOI TOCADA: </span>
+                    <p>${dataFormatada}</p>
+
+                    <button class="editar" id="botao-editar" onclick="abrirModal(id)">Editar ✎</button>
+                </div> -->
 
             </div>
         </div>

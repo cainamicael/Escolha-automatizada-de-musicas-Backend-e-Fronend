@@ -54,6 +54,8 @@ fetch(urlBase + 'musicas')
     
                     <span>QUANDO FOI TOCADA: </span>
                     <p>${dataFormatada}</p>
+
+                    <button class="editar" id="botao-editar" onclick="abrirModal(${dado.id})">Editar ✎</button>
                 </div>
             `
             })
