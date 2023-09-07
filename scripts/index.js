@@ -8,7 +8,7 @@ function removerInicio() {
 }
 
 function pegarValor() {
-    valor = document.getElementById('selecao').value 
+    const valor = document.getElementById('selecao').value 
     if(valor != '') {
         
         //tirar a classe inicio
@@ -22,7 +22,8 @@ function pegarValor() {
             document.querySelector('.modulos').innerHTML = modulos + `
                 <div class="modulo" id="modulo-${musica.id}">
                     <h4>♬</h4>
-                    <input type="hidden" id="hidden-${musica.id}" value="${musica.id}">
+                    <input type="hidden" id="id" value="${musica.id}">
+                    <input type="hidden" id="categoria-${musica.id}" value="${valor}">
                     <h2 class="musica" id="musica-${musica.id}">${musica.nome}</h2>
                     <h2 class="cantor" id="cantor-${musica.id}">(${musica.cantor})</h2>
                     <button id="botao-${musica.id}" onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
@@ -31,7 +32,6 @@ function pegarValor() {
                 </div>
             `
         })
-        
     }
 }
 
@@ -83,7 +83,8 @@ function botaoClicado(id) {
 
         moduloEspecifico.innerHTML = `
             <h4>♬</h4>
-            <input type="hidden" id="hidden-${musica.id}" value="${musica.id}">
+            <input type="hidden" id="id" value="${musica.id}">
+            <input type="hidden" id="categoria-${musica.id}" value="${musica.categoria}">
             <h2 class="musica" id="musica-${musica.id}">${musica.nome}</h2>
             <h2 class="cantor" id="cantor-${musica.id}">(${musica.cantor})</h2>
             <button id="botao-${musica.id}" onclick="botaoClicado(${musica.id})">Escolher outra Música</button>
@@ -96,58 +97,54 @@ function botaoClicado(id) {
 
 /*
 Falta:
-confirmar
 editar
 adicionar categorias no front, no enum e no db
 */
 
 //Confirmando
 async function confirmar() {
-    const obj = []
+    //Para só poder fazer o post para confirmar as músicas se tiver alguma música selecionada
 
-    for(let i = 0; i < valorSelecionado; i++) {
-        const id = parseInt(document.getElementById(`hidden-${i + 1}`).value)
-        const nome = document.getElementById(`musica-${i + 1}`).textContent
-        const cantor = document.getElementById(`cantor-${i + 1}`).textContent.replace(/[()]/g, '')
-        const categoria = (i === valorSelecionado-1) ? 'CELEBRACAO' : 'ADORACAO'
+    if(document.querySelectorAll('.modulo').length > 0) {
+        const obj = []
 
-        obj.push({id, nome, cantor, categoria})
-    }
-
-    console.log(JSON.stringify(obj))
+        //Pegar todos os elementos com a classe .modulo e seus valores, e adicionar no array
+        const classeModulo = document.querySelectorAll('.modulo')
     
-    const config = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(obj)
-    }
-
-    try {
-        const res = await fetch(urlBase + 'musicas/confirmar', config)
-
-        if(res.ok) { 
-            alert(`
-            Músicas confirmadas! 
+        classeModulo.forEach(modulo => {
             
-            Se você estiver usando o celular, 
-            você pode copiar e colar no grupo:
-
-            Graça e paz a todos! 
-            Seguem as músicas que serão tocadas:
-            
-            ${obj[0].nome} - ${obj[0].cantor}
-            ${obj[1].nome} - ${obj[1].cantor}
-            ${obj[2].nome} - ${obj[2].cantor}
-
-            Fiquem todos com Deus!
-        `)
-        } else {
-            alert('Música não confirmada! Ocorreu um erro!')
+            //Preciso do nome, cantor e categoria de cada div
+            const id = modulo.querySelector('#id').value
+    
+            const nome = modulo.querySelector(`#musica-${id}`).textContent
+            //Remove o primeiro e o último caractere ( )
+            const cantor = modulo.querySelector(`#cantor-${id}`).textContent.slice(1).slice(0, -1)
+            const categoria = modulo.querySelector(`#categoria-${id}`).value
+    
+            obj.push({nome, cantor, categoria})
+        })
+        
+        const config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(obj)
         }
-    }  catch(e) {
-        alert('Ouve um erro no servidor!')
+    
+        try {
+            const res = await fetch(urlBase + 'musicas/confirmar', config)
+    
+            if(res.ok) { 
+                alert(`Músicas confirmadas! `)
+            } else {
+                alert('Música não confirmada! Ocorreu um erro!')
+            }
+        }  catch(e) {
+            alert('Ouve um erro no servidor!')
+        }
+    } else {
+        alert(`Escolha alguma música primeiro! `)
     }
 }
 
