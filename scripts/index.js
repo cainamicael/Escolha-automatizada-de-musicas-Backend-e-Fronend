@@ -123,8 +123,10 @@ async function confirmar() {
             const cantor = modulo.querySelector(`#cantor-${id}`).textContent.slice(1).slice(0, -1)
             const categoria = modulo.querySelector(`#categoria-${id}`).value
 
-            obj.push({ nome, cantor, categoria })
+            obj.push({id, nome, cantor, categoria })
         })
+
+        console.log(obj)
 
         const config = {
             method: 'POST',

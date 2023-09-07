@@ -142,7 +142,8 @@ public class MusicaService {
 		for (MusicaDTO musica : musicas) {
 			musica.setPularMusica(false);
 			musica.setDataUltimaVezTocada(new Date());
-			repository.save(new Musica(musica));
+			Musica musicaParaSalvar = new Musica(musica);
+			repository.save(musicaParaSalvar);
 		}
 		
 		//Tirar o pular de todos os registros
