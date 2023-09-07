@@ -1,12 +1,11 @@
 alert('AVISO: Não esqueça de clicar no confirmar e caso desista, clique em cancelar!')
 
-const arraySelecionadas = []
-
 //Remover a classe inicio
 function removerInicio() {
     document.querySelectorAll('.inicio').forEach(inicio => inicio.remove())
 }
 
+//Onchange do select
 function pegarValor() {
     const valor = document.getElementById('selecao').value 
     if(valor != '') {
@@ -51,7 +50,7 @@ function adicionar() {
             </select>
         </div>
     `
-
+    
     let totalInicios = document.querySelectorAll('.inicio').length
 
     document.querySelectorAll('.inicio').forEach((e, indice) => {
