@@ -23,7 +23,6 @@ fetch(urlBase + 'musicas')
 
         if (dados != []) {
             dados.forEach(dado => {
-                console.log(dado)
                 let dataFormatada = ''
 
                 if (dado.dataUltimaVezTocada != null) {
@@ -63,3 +62,19 @@ fetch(urlBase + 'musicas')
 
         modulos.innerHTML = adicionar
     })
+
+function abrirModal(id) {
+    //console.log('clicado', id)
+
+    const modal = document.querySelector('.modal')
+    const fade = document.querySelector('.fade')
+    modal.classList.toggle('hide')
+    fade.classList.toggle('hide')
+}
+
+function fecharModal() {
+    const modal = document.querySelector('.modal')
+    const fade = document.querySelector('.fade')
+    modal.classList.toggle('hide')
+    fade.classList.toggle('hide')
+}
