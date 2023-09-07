@@ -5,7 +5,7 @@ document.getElementById('formulario').addEventListener('submit', async (e) => {
     const cantor = document.getElementsByName('cantor')[0].value
     const categoria = document.getElementsByName('categoria')[0].value
 
-    const obj = {nome, cantor, categoria}
+    const obj = { nome, cantor, categoria }
 
     const config = {
         method: 'POST',
@@ -17,7 +17,7 @@ document.getElementById('formulario').addEventListener('submit', async (e) => {
 
     const res = await fetch(urlBase + 'musica', config)
 
-    if(res.ok) {
+    if (res.ok) {
         alert('Música cadastrada com sucesso! (Cuidado para não ser uma música herege)')
         console.log(obj)
 

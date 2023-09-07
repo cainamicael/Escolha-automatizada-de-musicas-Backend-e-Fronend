@@ -7,7 +7,8 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     background-color: #242423;
 }
@@ -62,7 +63,7 @@ html, body {
     padding: 15px;
 }
 
-.conteudo  .informacoes p {
+.conteudo .informacoes p {
     color: #242423;
     text-align: center;
     font-weight: bold;

@@ -9,7 +9,7 @@ setarValores(categoriaSelecionada)
 
 //Acionado caso haja mudança de categoria
 function pegarValor() {
-    let categoriaAlterada = document.getElementById('selecao').value 
+    let categoriaAlterada = document.getElementById('selecao').value
     categoriaSelecionada = categoriaAlterada
 
     setarValores(categoriaSelecionada)
@@ -18,11 +18,11 @@ function pegarValor() {
 //Visual de como vão aparecer as musicas
 function setarValores(categoriaSelecionada) {
     fetch(urlBase + `musica?categoria=${categoriaSelecionada}`)
-    .then(res => res.json())
-    .then(musica => {
-        const modulos = document.querySelector('.modulos')
+        .then(res => res.json())
+        .then(musica => {
+            const modulos = document.querySelector('.modulos')
 
-        modulos.innerHTML = `
+            modulos.innerHTML = `
             <div class="modulo">
                 <h4 class="id">Id: ${musica.id}</h4>
                 <h2 class="musica">${musica.nome}</h2>
@@ -31,17 +31,17 @@ function setarValores(categoriaSelecionada) {
             </div>
         
         `
-    })
+        })
 }
 
 //Escolhendo outra música
 function botaoClicado(id) {
     fetch(urlBase + `musica/pular/${id}`)
-    .then(res => res.json())
-    .then(novaMusica => {
-        const modulos = document.querySelector('.modulos')
+        .then(res => res.json())
+        .then(novaMusica => {
+            const modulos = document.querySelector('.modulos')
 
-        modulos.innerHTML = `
+            modulos.innerHTML = `
             <div class="modulo">
                 <h4 class="id">Id: ${novaMusica.id}</h4>
                 <h2 class="musica">${novaMusica.nome}</h2>
@@ -50,7 +50,7 @@ function botaoClicado(id) {
             </div>
         
         `
-    })
+        })
 }
 
 //Confirmando
@@ -60,7 +60,7 @@ async function confirmar() {
     const cantor = document.querySelector('.cantor').textContent.replace(/[()]/g, '')
     const categoria = categoriaSelecionada
 
-    const obj = [{id, nome, cantor, categoria}]
+    const obj = [{ id, nome, cantor, categoria }]
 
     const config = {
         method: 'POST',
@@ -73,7 +73,7 @@ async function confirmar() {
     try {
         const res = await fetch(urlBase + 'musicas/confirmar', config)
 
-        if(res.ok) { 
+        if (res.ok) {
             alert(`
                 Confirmada com sucesso!
 
@@ -83,7 +83,7 @@ async function confirmar() {
         } else {
             alert('Música não confirmada! Ocorreu um erro!')
         }
-    }  catch(e) {
+    } catch (e) {
         alert('Ouve um erro no servidor!')
     }
 }

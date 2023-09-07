@@ -2,38 +2,38 @@ alert('Quando todas as músicas forem tocadas, a contagem de músicas tocadas ir
 
 //Setando as músicas cadastradas e tocadas
 fetch(urlBase + 'quantidades')
-.then(resposta => resposta.json())
-.then(quantidades => {
-    const musicasCadastradas = quantidades.quantidadeRegistros
-    const musicasTocadas = quantidades.quantidadeMusicasTocadas
+    .then(resposta => resposta.json())
+    .then(quantidades => {
+        const musicasCadastradas = quantidades.quantidadeRegistros
+        const musicasTocadas = quantidades.quantidadeMusicasTocadas
 
-    //Mudando os textos
-    document.getElementById('musicas-cadastradas').innerText = musicasCadastradas + ' MÚSICAS CADASTRADAS'
-    
-    document.getElementById('musicas-tocadas').innerText = musicasTocadas + ' MÚSICAS JÁ TOCADAS'
-})
+        //Mudando os textos
+        document.getElementById('musicas-cadastradas').innerText = musicasCadastradas + ' MÚSICAS CADASTRADAS'
+
+        document.getElementById('musicas-tocadas').innerText = musicasTocadas + ' MÚSICAS JÁ TOCADAS'
+    })
 
 //Pegando cada música dinamicamente
 fetch(urlBase + 'musicas/tocadas')
-.then(resposta => resposta.json())
-.then(dados => {
-    const modulos = document.querySelector('.modulos')
-    modulos.innerHTML = ''
-    let adicionar = ''
+    .then(resposta => resposta.json())
+    .then(dados => {
+        const modulos = document.querySelector('.modulos')
+        modulos.innerHTML = ''
+        let adicionar = ''
 
-    if(dados != []) {
-        dados.forEach(dado => {  
-            console.log(dado)
-                      
-            const data = new Date(dado.dataUltimaVezTocada);
+        if (dados != []) {
+            dados.forEach(dado => {
+                console.log(dado)
 
-            const dia = data.getDate();
-            const mes = data.getMonth() + 1; // Lembrando que os meses em JavaScript são base 0
-            const ano = data.getFullYear();
+                const data = new Date(dado.dataUltimaVezTocada);
 
-            const dataFormatada = `${dia}/${mes}/${ano}`
+                const dia = data.getDate();
+                const mes = data.getMonth() + 1; // Lembrando que os meses em JavaScript são base 0
+                const ano = data.getFullYear();
 
-            adicionar += `
+                const dataFormatada = `${dia}/${mes}/${ano}`
+
+                adicionar += `
                 <div class="modulo">
                     <span>ID:</span>
                     <p>${dado.id}</p>
@@ -51,8 +51,8 @@ fetch(urlBase + 'musicas/tocadas')
                     <p>${dataFormatada}</p>
                 </div>
             `
-        })
-    }
+            })
+        }
 
-    modulos.innerHTML = adicionar
-})
+        modulos.innerHTML = adicionar
+    })
