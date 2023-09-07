@@ -56,6 +56,21 @@ public class MusicaService {
 		return musicasDTO;
 	}
 	
+	public MusicaDTO listarPorId(Long id) {
+		Musica musica =  repository.findById(id).get();
+		MusicaDTO musicaDTO = new MusicaDTO(musica);
+		return musicaDTO;
+	}
+	
+	public ResponseEntity<String> atualizarPorId(Long id, MusicaDTO musicaDTO) {
+		Musica musica = repository.findById(id).get();
+		musica.setNome(musicaDTO.getNome());
+		musica.setCantor(musicaDTO.getCantor());
+		musica.setCategoria(musicaDTO.getCategoria());
+		repository.save(musica);
+		return ResponseEntity.ok("Música atualizada com sucesso");
+	}
+	
 	public List<MusicaDTO> listarTocadas() {
 		Optional<List<Musica>> musicasTocadasOptional = repository.findByDataUltimaVezTocadaNotNull();
 		

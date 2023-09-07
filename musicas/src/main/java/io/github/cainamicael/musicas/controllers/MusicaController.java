@@ -35,6 +35,16 @@ public class MusicaController {
 		return service.listarTudo();
 	}
 	
+	@GetMapping(value = "musica/{id}")
+	public MusicaDTO listarPorId(@PathVariable("id") Long id) {
+		return service.listarPorId(id);
+	}
+	
+	@PostMapping(value = "musica/{id}")
+	public ResponseEntity<?> atualizarPorId(@PathVariable("id") Long id, @RequestBody MusicaDTO musica) {
+		return service.atualizarPorId(id, musica);
+	}
+	
 	@GetMapping(value = "musicas/tocadas")
 	public List<MusicaDTO> listarTocadas() {
 		return service.listarTocadas();

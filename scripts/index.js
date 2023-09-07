@@ -46,7 +46,16 @@ function adicionar() {
             <select name="categoria" id="selecao" onchange="pegarValor()">
                 <option value="">Selecione</option>
                 <option value="ADORACAO">Adoração</option>
+                <option value="APELO">Apelo</option>
+                <option value="CEIA">Ceia</option>
                 <option value="CELEBRACAO">Celebração</option>
+                <option value="CIRCULO_DE_ORACAO">Círculo de Oração</option>
+                <option value="CORINHOS">Corinhos</option>
+                <option value="FAMILIA">Família</option>
+                <option value="GRATIDAO">Gratidão</option>
+                <option value="MISSOES">Missões</option>
+                <option value="MULHERES">Mulheres</option>
+                <option value="NATAL">Natal</option>
             </select>
         </div>
     `
@@ -96,8 +105,9 @@ function botaoClicado(id) {
 
 /*
 Falta:
-editar
 adicionar categorias no front, no enum e no db
+modal copiar e colar
+exportar backup banco de dados
 */
 
 //Confirmando
