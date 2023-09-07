@@ -138,8 +138,6 @@ async function confirmar() {
             const res = await fetch(urlBase + 'musicas/confirmar', config)
 
             if (res.ok) {
-                alert(`Músicas confirmadas! `)
-
                 let adicionar = ''
 
                 obj.forEach(dado => {
