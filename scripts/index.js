@@ -103,13 +103,6 @@ function botaoClicado(id) {
         })
 }
 
-/*
-Falta:
-adicionar categorias no front, no enum e no db
-modal copiar e colar
-exportar backup banco de dados
-*/
-
 //Confirmando
 async function confirmar() {
     //Para só poder fazer o post para confirmar as músicas se tiver alguma música selecionada
@@ -146,6 +139,20 @@ async function confirmar() {
 
             if (res.ok) {
                 alert(`Músicas confirmadas! `)
+
+                let adicionar = ''
+
+                obj.forEach(dado => {
+                    adicionar += `
+                        <h3>${dado.nome}</h3>
+                        <h4>(${dado.cantor})</h4>
+                        <br>
+                    `
+                })
+
+                document.querySelector('.musicas-modal').innerHTML = adicionar
+
+                abrirModal()
             } else {
                 alert('Música não confirmada! Ocorreu um erro!')
             }
@@ -162,4 +169,19 @@ async function cancelar() {
     let res = await fetch(urlBase + 'musicas/cancelar')
     console.log(`Status da requisição de cancelamento: ${res.status}`)
     window.location.href = '../index.html'
+}
+
+function abrirModal() {
+    const modal = document.querySelector('.modal')
+    const fade = document.querySelector('.fade')
+    modal.classList.toggle('hide')
+    fade.classList.toggle('hide')
+}
+
+function fecharModal() {
+    const modal = document.querySelector('.modal')
+    const fade = document.querySelector('.fade')
+    modal.classList.toggle('hide')
+    fade.classList.toggle('hide')
+    document.querySelector('.musicas-modal').innerHTML = ``
 }
