@@ -7,18 +7,18 @@ function removerInicio() {
 
 //Onchange do select
 function pegarValor() {
-    const valor = document.getElementById('selecao').value 
-    if(valor != '') {
-        
+    const valor = document.getElementById('selecao').value
+    if (valor != '') {
+
         //tirar a classe inicio
         removerInicio()
 
         //adicionar módulo com a categoria selecionada
         fetch(urlBase + `musica?categoria=${valor}`)
-        .then(res => res.json())
-        .then(musica => {
-            const modulos = document.querySelector('.modulos').innerHTML
-            document.querySelector('.modulos').innerHTML = modulos + `
+            .then(res => res.json())
+            .then(musica => {
+                const modulos = document.querySelector('.modulos').innerHTML
+                document.querySelector('.modulos').innerHTML = modulos + `
                 <div class="modulo" id="modulo-${musica.id}">
                     <h4>♬</h4>
                     <input type="hidden" id="id" value="${musica.id}">
@@ -30,7 +30,7 @@ function pegarValor() {
                     <button id="remover" onclick="remover(${musica.id})">-</button>
                 </div>
             `
-        })
+            })
     }
 }
 
@@ -50,11 +50,11 @@ function adicionar() {
             </select>
         </div>
     `
-    
+
     let totalInicios = document.querySelectorAll('.inicio').length
 
     document.querySelectorAll('.inicio').forEach((e, indice) => {
-        if(indice != totalInicios-1) {
+        if (indice != totalInicios - 1) {
             e.remove()
         }
     })
@@ -64,7 +64,7 @@ function adicionar() {
 function remover(id) {
     const totalElementos = document.querySelectorAll(`.modulo`).length
 
-    if(totalElementos > 1) {
+    if (totalElementos > 1) {
         const removerElemento = document.querySelector(`#modulo-${id}`).remove()
     } else {
         alert('Insira outras músicas para poder remover esta, ou clique em cancelar e começe do zero')
@@ -75,12 +75,12 @@ function remover(id) {
 //Escolhendo outra música
 function botaoClicado(id) {
     fetch(urlBase + `musica/pular/${id}`)
-    .then(res => res.json())
-    .then(musica => {
-        //Mudar os valores do módulo específico
-        const moduloEspecifico = document.getElementById(`modulo-${id}`)
+        .then(res => res.json())
+        .then(musica => {
+            //Mudar os valores do módulo específico
+            const moduloEspecifico = document.getElementById(`modulo-${id}`)
 
-        moduloEspecifico.innerHTML = `
+            moduloEspecifico.innerHTML = `
             <h4>♬</h4>
             <input type="hidden" id="id" value="${musica.id}">
             <input type="hidden" id="categoria-${musica.id}" value="${musica.categoria}">
@@ -90,8 +90,8 @@ function botaoClicado(id) {
             <button id="adicionar" onclick="adicionar()">+</button>
             <button id="remover" onclick="remover(${musica.id})">-</button>
         `
-        moduloEspecifico.id = `modulo-${musica.id}`
-    })
+            moduloEspecifico.id = `modulo-${musica.id}`
+        })
 }
 
 /*
@@ -104,25 +104,25 @@ adicionar categorias no front, no enum e no db
 async function confirmar() {
     //Para só poder fazer o post para confirmar as músicas se tiver alguma música selecionada
 
-    if(document.querySelectorAll('.modulo').length > 0) {
+    if (document.querySelectorAll('.modulo').length > 0) {
         const obj = []
 
         //Pegar todos os elementos com a classe .modulo e seus valores, e adicionar no array
         const classeModulo = document.querySelectorAll('.modulo')
-    
+
         classeModulo.forEach(modulo => {
-            
+
             //Preciso do nome, cantor e categoria de cada div
             const id = modulo.querySelector('#id').value
-    
+
             const nome = modulo.querySelector(`#musica-${id}`).textContent
             //Remove o primeiro e o último caractere ( )
             const cantor = modulo.querySelector(`#cantor-${id}`).textContent.slice(1).slice(0, -1)
             const categoria = modulo.querySelector(`#categoria-${id}`).value
-    
-            obj.push({nome, cantor, categoria})
+
+            obj.push({ nome, cantor, categoria })
         })
-        
+
         const config = {
             method: 'POST',
             headers: {
@@ -130,16 +130,16 @@ async function confirmar() {
             },
             body: JSON.stringify(obj)
         }
-    
+
         try {
             const res = await fetch(urlBase + 'musicas/confirmar', config)
-    
-            if(res.ok) { 
+
+            if (res.ok) {
                 alert(`Músicas confirmadas! `)
             } else {
                 alert('Música não confirmada! Ocorreu um erro!')
             }
-        }  catch(e) {
+        } catch (e) {
             alert('Ouve um erro no servidor!')
         }
     } else {
